@@ -1,0 +1,28 @@
+{
+    "name": "vanilla/htmlawed",
+    "description": "A composer wrapper for the htmLawed library to purify & filter HTML. Tested with PHPUnit and PhantomJS!",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Todd Burry",
+            "email": "todd@vanillaforums.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "require-dev": {
+        "tburry/pquery": "~1.0.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/Htmlawed.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Htmlawed\\Tests\\": "tests"
+        }
+    }
+}

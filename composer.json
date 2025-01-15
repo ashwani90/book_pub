@@ -1,0 +1,11 @@
+{
+    "require": {
+        "pressbooks/pressbooks-book": "^2.26",
+        "pressbooks/pressbooks-aldine": "^1.19"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

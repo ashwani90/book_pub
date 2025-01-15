@@ -1,0 +1,77 @@
+{
+	"name": "johnbillion/extended-cpts",
+	"description": "A library which provides extended functionality to WordPress custom post types and taxonomies.",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "John Blackbourn",
+			"homepage": "https://johnblackbourn.com/"
+		}
+	],
+	"homepage": "https://github.com/johnbillion/extended-cpts/",
+	"require": {
+		"php": ">= 7.4.0",
+		"johnbillion/args": "^1.4.1"
+	},
+	"require-dev": {
+		"automattic/phpcs-neutron-standard": "1.7.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"johnbillion/falsey-assertequals-detector": "*",
+		"johnbillion/plugin-infrastructure": "dev-trunk",
+		"lucatume/wp-browser": "^3.0.21",
+		"phpcompatibility/phpcompatibility-wp": "^2",
+		"phpstan/phpstan": "^1.0",
+		"phpstan/phpstan-phpunit": "^1.0",
+		"roots/wordpress-core-installer": "^1.0.0",
+		"roots/wordpress-full": "*",
+		"szepeviktor/phpstan-wordpress": "1.1.6",
+		"wp-coding-standards/wpcs": "2.3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"ExtCPTs\\": "src",
+			"ExtCPTs\\Tests\\": "tests/integration"
+		},
+		"files": [
+			"functions.php"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"roots/wordpress-core-installer": true
+		},
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"extra": {
+		"wordpress-install-dir": "vendor/wordpress/wordpress"
+	},
+	"scripts": {
+		"test": [
+			"@composer validate --strict --no-check-lock",
+			"@test:phpstan",
+			"@test:phpcs",
+			"@test:integration"
+		],
+		"test:destroy": [
+			"COMPOSE_PROJECT_NAME=extended-cpts docker compose down --volumes --remove-orphans"
+		],
+		"test:integration": [
+			"integration-tests"
+		],
+		"test:phpcs": [
+			"phpcs -nps --colors --report-code --report-summary --report-width=80 --cache=tests/cache/phpcs.json --basepath='./' ."
+		],
+		"test:phpstan": [
+			"codecept build",
+			"phpstan analyze --memory-limit=1024M"
+		],
+		"test:start": [
+			"COMPOSE_PROJECT_NAME=extended-cpts docker compose up -d"
+		],
+		"test:stop": [
+			"COMPOSE_PROJECT_NAME=extended-cpts docker compose down"
+		]
+	}
+}

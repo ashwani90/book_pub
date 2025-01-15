@@ -1,0 +1,43 @@
+{
+  "name": "bccampus/pressbooks-mpdf",
+  "description": "Open source PDF generation for Pressbooks via the mPDF library.",
+  "type": "wordpress-plugin",
+  "version": "3.3.1",
+  "homepage": "https://github.com/bccampus/pressbooks-mpdf",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "BCcampus",
+      "email": "code@bccampus.ca",
+      "homepage": "https://github.com/BCcampus"
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "8.1"
+    },
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "require": {
+    "php": "8.1",
+    "mpdf/mpdf": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "humanmade/coding-standards": "*"
+  },
+  "scripts": {
+    "test": [
+      "vendor/bin/phpunit --configuration phpunit.xml",
+      "@standards"
+    ],
+    "standards": [
+      "vendor/bin/phpcs --standard=phpcs.ruleset.xml ."
+    ],
+    "standards-beautify": [
+      "vendor/bin/phpcbf --standard=phpcs.ruleset.xml ."
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+name: Update Bedrocks 🔧
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  trigger_bedrock_updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Bedrock Updates
+        uses: pressbooks/composer-autoupdate-bedrock@main
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SNS_ARN_DEV: ${{ secrets.AWS_SNS_ARN_DEV }}
+          AWS_SNS_ARN_STAGING: ${{ secrets.AWS_SNS_ARN_STAGING }}
+          INPUT_TRIGGERED_BY: ${{ github.repository }}
+          REF: ${{ github.ref }}

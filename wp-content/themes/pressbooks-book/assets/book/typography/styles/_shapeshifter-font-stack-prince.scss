@@ -1,0 +1,77 @@
+// Shape Shifter Fonts
+// @see \Pressbooks\Styles::getShapeShifterFonts
+
+$shapeshifter-fonts: ();
+
+@if variable-exists(shapeshifter-font-1) {
+  $shapeshifter-fonts: append($shapeshifter-fonts, $shapeshifter-font-1 );
+}
+
+@if variable-exists(shapeshifter-font-2) {
+  $shapeshifter-fonts: append($shapeshifter-fonts, $shapeshifter-font-2 );
+}
+
+@each $font in $shapeshifter-fonts {
+  @if unquote($font) == 'Cormorant Garamond' {
+    // noinspection CssInvalidAtRule
+    @import'CormorantGaramondFont';
+  } @else if unquote($font) == 'Noto Serif' {
+    // noinspection CssInvalidAtRule
+    @import'NotoSerifFont';
+  } @else if unquote($font) == 'Spectral' {
+    // noinspection CssInvalidAtRule
+    @import'SpectralFont';
+  } @else if unquote($font) == 'Alegreya Sans' {
+    // noinspection CssInvalidAtRule
+    @import'AlegreyaSansFont';
+  } @else if unquote($font) == 'Crimson Text' {
+    // noinspection CssInvalidAtRule
+    @import'CrimsonTextFont';
+  } @else if unquote($font) == 'Roboto' {
+    // noinspection CssInvalidAtRule
+    @import'RobotoFont';
+  } @else if unquote($font) == 'Open Sans' {
+    // noinspection CssInvalidAtRule
+    @import'OpenSansFont';
+  } @else if unquote($font) == 'Lato' {
+    // noinspection CssInvalidAtRule
+    @import'LatoFont';
+  } @else if unquote($font) == 'Montserrat' {
+    // noinspection CssInvalidAtRule
+    @import'MontserratFont';
+  } @else if unquote($font) == 'Raleway' {
+    // noinspection CssInvalidAtRule
+    @import'RalewayFont';
+  } @else if unquote($font) == 'Noto Sans' {
+    // noinspection CssInvalidAtRule
+    @import'NotoSansFont';
+  } @else if unquote($font) == 'Rubik' {
+    // noinspection CssInvalidAtRule
+    @import'RubikFont';
+  } @else if unquote($font) == 'Barlow' {
+    // noinspection CssInvalidAtRule
+    @import'BarlowFont';
+    // noinspection CssInvalidAtRule
+  } @else if unquote($font) == 'Libre Franklin' {
+    // noinspection CssInvalidAtRule
+    @import'LibreFranklinFont';
+  } @else if unquote($font) == 'K2D' {
+    // noinspection CssInvalidAtRule
+    @import'K2DFont';
+  } @else if unquote($font) == 'FreeSans' {
+    // noinspection CssInvalidAtRule
+    @import'FreeSans';
+  } @else if unquote($font) == 'FreeSerif' {
+    // noinspection CssInvalidAtRule
+    @import'FreeSerif';
+  } @else if unquote($font) == 'SourceSansPro' {
+    // noinspection CssInvalidAtRule
+    @import'SourceSansProFont';
+  } @else if unquote($font) == 'Sorts Mill Goudy' {
+    // noinspection CssInvalidAtRule
+    @import'SortsMillGoudyFont';
+  } @else if unquote($font) == 'New Athena Unicode' {
+    // noinspection CssInvalidAtRule
+    @import'NewAthenaUnicodeFont';
+  }
+}

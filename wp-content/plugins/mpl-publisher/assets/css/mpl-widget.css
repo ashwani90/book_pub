@@ -1,0 +1,35 @@
+.shortcode_mpl_publisher {
+  margin-bottom: 20px;
+}
+
+.widget_mpl_publisher > section {
+  text-align: center;
+  line-height: 1.42857143;
+  font-weight: 400;
+}
+
+.widget_mpl_publisher > section > h5 {
+  margin: 5px 0;
+}
+
+.widget_mpl_publisher > section > form,
+.widget_mpl_publisher > section > p {
+  margin: 0 0 5px;
+  font-size: 90%;
+}
+
+.widget_mpl_publisher > section > p.book-links > a {
+  display: inline-block;
+  margin: 0 auto;
+  text-decoration: none;
+  border: 0;
+}
+
+.widget_mpl_publisher > section img.book-cover {
+  margin: 0 auto;
+}
+
+.widget_mpl_publisher > section button.btn {
+  display: inline-block;
+  margin-bottom: 0;
+}
