@@ -27,8 +27,6 @@ if ( ! function_exists( 'app' ) ) {
 	}
 }
 
-
-
 /**
  * Shortcut to \Pressbooks\Book::get( 'prev' );
  *
