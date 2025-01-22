@@ -677,7 +677,8 @@ function wp_print_media_templates() {
 						<# } #>
 			</span>
 					</strong>
-			<td class="author column-author" data-colname="Author"><a >{{data.authorName}}</a></td>
+					<td class="author column-author" data-colname="Author"><a >{{data.filename}}</a></td>
+					<td class="author column-author" data-colname="Author"><a >{{data.authorName}}</a></td>
 			<td class="date column-date" data-colname="Date">{{data.dateFormatted}}</td>	
 	</script>
 
