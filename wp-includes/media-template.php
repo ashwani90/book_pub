@@ -663,6 +663,13 @@ function wp_print_media_templates() {
 		} #>
 	</script>
 
+	<script type="text/html" id="tmpl-toolbar-switcher">
+		<div class="toolbar">
+			<button class="view-switcher button">Switch View</button>
+		</div>
+	</script>
+
+
 	<script type="text/html" id="tmpl-attachment-list">
 			<td class="title column-title has-row-actions column-primary" data-colname="File">		
 				<strong class="has-media-icon" style="float:left;">
