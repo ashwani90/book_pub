@@ -673,16 +673,21 @@ function wp_print_media_templates() {
 	<script type="text/html" id="tmpl-attachment-list">
 			<td class="title column-title has-row-actions column-primary" data-colname="File">		
 				<strong class="has-media-icon" style="float:left;">
-						
+				<# if ( data.uploading ) { #>
+					<span class="media-progress-bar"><span style="width: {{ data.percent }}%"></span></span>
+				<# } else if ( 'image' === data.type && data.size && data.size.url ) { #>
+						<img src="{{ data.size.url }}" draggable="false" alt="" style="display: inline-block; height: 60px; overflow: hidden; position: relative;margin: 10px;"/>
+				<# } else { #>
 				<span class="media-icon image-icon" style="display: inline-block; height: 60px; overflow: hidden; position: relative;margin: 10px;">
-			<# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
+						<# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
 							<img src="{{ data.image.src }}" class="thumbnail" draggable="false" alt="" width="60px" sizes="(max-width: 60px) 100vw, 60px">
 						<# } else if ( data.sizes && data.sizes.medium ) { #>
 							<img src="{{ data.sizes.medium.url }}" class="thumbnail" draggable="false" alt="" width="60px" sizes="(max-width: 60px) 100vw, 60px">
 						<# } else { #>
 							<img src="{{ data.icon }}" class="icon" draggable="false" alt="" width="60px" sizes="(max-width: 60px) 100vw, 60px">
 						<# } #>
-			</span>
+				</span>
+				<# } #>
 					</strong>
 					<td class="author column-author" data-colname="Author"><a >{{data.filename}}</a></td>
 					<td class="author column-author" data-colname="Author"><a >{{data.authorName}}</a></td>
