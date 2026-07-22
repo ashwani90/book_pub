@@ -376,7 +376,34 @@ class Pdf extends Prince\Pdf {
 	protected function iterator( \DOMDocument $dom ) {
 		// assumes xhtml output has all pages in the first level children of body node
 		// ex: body->div
-		$pages = $dom->getElementsByTagName( 'body' )->item( 0 )->childNodes;
+		$body = $dom->getElementsByTagName('body')->item(0);
+
+		$pages = [];
+
+		foreach ($body->childNodes as $node) {
+
+			if ($node->nodeType !== XML_ELEMENT_NODE) {
+				continue;
+			}
+
+			$class = $node->getAttribute('class');
+
+			// Modern Pressbooks wraps parts and chapters together.
+			if ($class === 'part-wrapper') {
+
+				foreach ($node->childNodes as $child) {
+
+					if ($child->nodeType === XML_ELEMENT_NODE) {
+						$pages[] = $child;
+					}
+				}
+
+			} else {
+
+				$pages[] = $node;
+
+			}
+		}
 
 		// first thing's first, gotta have a purty pikcher
 		if ( 1 === $this->options['mpdf_include_cover'] ) {
@@ -393,7 +420,18 @@ class Pdf extends Prince\Pdf {
 				 *****************************************/
 				error_log('Class: ' . $page->getAttribute('class'));
 				error_log('ID: ' . $page->getAttribute('id'));
-				$context_class = substr( $page->getAttribute( 'class' ), 0, 4 );
+				$class = $page->getAttribute('class');
+
+				if (strpos($class, 'front-matter') !== false)
+					$context_class = 'fron';
+				elseif (strpos($class, 'chapter') !== false)
+					$context_class = 'chap';
+				elseif (strpos($class, 'part') !== false)
+					$context_class = 'part';
+				elseif (strpos($class, 'back-matter') !== false)
+					$context_class = 'back';
+				else
+					$context_class = '';
 				$context_id    = substr( $page->getAttribute( 'id' ), 0, 3 );
 
 				// Mpdf has its own table of contents mechanism
