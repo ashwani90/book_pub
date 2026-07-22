@@ -27,6 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	return;
 }
 
+add_filter('all_plugins', function ($plugins) {
+    error_log('Plugins visible in admin:');
+    error_log(print_r(array_keys($plugins), true));
+    return $plugins;
+}, 9999);
 add_action( 'init', function () {
 	// Must meet minimum requirements
 	if ( ! @include_once( WP_PLUGIN_DIR . '/pressbooks/compatibility.php' ) ) { // phpcs:ignore

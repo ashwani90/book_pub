@@ -144,7 +144,7 @@ class Pdf extends Prince\Pdf {
 	 * @return bool
 	 */
 	function convert() {
-
+		error_log('===== convert() started =====');
 		$filename         = $this->timestampedFileName( '._oss.pdf' );
 		$this->outputPath = $filename;
 		$args             = [];
@@ -165,9 +165,11 @@ class Pdf extends Prince\Pdf {
 		$doc->preserveWhiteSpace = false;
 		$dom                     = $doc->loadHTML( $contents );
 
+		error_log('Fetching XHTML...');
 		$config = $this->setConfigVariables();
-
+		error_log('XHTML fetched');
 		try {
+			error_log('Step1');
 			$this->mpdf = new Mpdf( $config );
 			$this->setDocumentMeta();
 
@@ -177,6 +179,7 @@ class Pdf extends Prince\Pdf {
 
 			// iterate over the xhtml domdocument
 			$this->iterator( $dom );
+
 
 			/****************************************
 			 * alternate route NOTES:
@@ -189,17 +192,61 @@ class Pdf extends Prince\Pdf {
 			 * works but mpdf headers and footer functionality is lost
 			 *****************************************/
 			//$this->mpdf->WriteHTML( $contents ); // @codingStandardsIgnoreLine
-
+			error_log('write');
+			// $html = $dom->saveHTML($page);
+			// $this->writeHtmlInChunks($html);
 			// make the thing
 			$this->mpdf->Output( $this->outputPath, 'F' );
+			error_log('Out put written to ' . $this->outputPath);
 
-		} catch ( MpdfException $e ) {
-			if ( defined( 'WP_ENV' ) && WP_ENV === 'development' ) {
-				error_log( $e->getMessage() ); //phpcs:ignore
-			}
+		} catch (\Throwable $e) {
+			error_log('Exception type: ' . get_class($e));
+			error_log($e->getMessage());
+			error_log($e->getFile() . ':' . $e->getLine());
+			error_log($e->getTraceAsString());
 		}
 
 		return true;
+	}
+
+	/**
+	 * Write HTML to mPDF in smaller chunks.
+	 *
+	 * Large HTML fragments can exceed mPDF's internal PCRE backtrack limit.
+	 * Splitting at block boundaries dramatically reduces memory usage and
+	 * allows very large books to render successfully.
+	 */
+	protected function writeHtmlInChunks(string $html): void
+	{
+		// Small pages don't need chunking.
+		if (strlen($html) < 200000) {
+			$this->mpdf->WriteHTML($html);
+			return;
+		}
+
+		// Prefer splitting after block-level elements.
+		$parts = preg_split(
+			'/(<\/(?:section|article|chapter|div|table|figure|pre|blockquote|ul|ol)>)/i',
+			$html,
+			-1,
+			PREG_SPLIT_DELIM_CAPTURE
+		);
+
+		$buffer = '';
+		$limit  = 150000;
+
+		foreach ($parts as $part) {
+			$buffer .= $part;
+
+			if (strlen($buffer) >= $limit) {
+				$this->mpdf->WriteHTML($buffer);
+				$buffer = '';
+			}
+		}
+
+		if ($buffer !== '') {
+			$this->mpdf->WriteHTML($buffer);
+		}
 	}
 
 	/**
@@ -337,12 +384,15 @@ class Pdf extends Prince\Pdf {
 		}
 
 		foreach ( $pages as $page ) {
+			error_log("Processing page is " . $page->nodeType . " with name " . $page->nodeName);
 			// avoid text nodes
 			if ( XML_ELEMENT_NODE === $page->nodeType ) {
 
 				/****************************************
 				 * Logic
 				 *****************************************/
+				error_log('Class: ' . $page->getAttribute('class'));
+				error_log('ID: ' . $page->getAttribute('id'));
 				$context_class = substr( $page->getAttribute( 'class' ), 0, 4 );
 				$context_id    = substr( $page->getAttribute( 'id' ), 0, 3 );
 
@@ -433,6 +483,14 @@ class Pdf extends Prince\Pdf {
 				 * Add Page to Document Array
 				 *****************************************/
 				$this->mpdf->AddPageByArray( $page_options );
+				static $first = true;
+				error_log("Adding $context_class page to document with title: $title");
+
+				if (!$first) {
+					$this->mpdf->WriteHTML('<pagebreak />');
+				}
+
+				$first = false;
 
 				/****************************************
 				 * Table of Contents
@@ -454,8 +512,12 @@ class Pdf extends Prince\Pdf {
 				/****************************************
 				 * Do the thing
 				 *****************************************/
-				$html = $dom->saveHTML( $page );
-				$this->mpdf->WriteHTML( $html );
+
+				$html = $dom->saveHTML($page);
+				$this->writeHtmlInChunks($html);
+
+				// $html = $dom->saveHTML( $page );
+				// $this->mpdf->WriteHTML( $html );
 			}
 		}
 
