@@ -25,15 +25,21 @@ wp-config.php
 
 # Example plugin
 /wp-content/plugins/hello.php
-/wp-content/**/**
+
 # Uploads
 /wp-content/uploads/
-
+/wp-content/plugins/pressbooks-mpdf/vendor/
+/wp-content/plugins/pressbooks/**/**
+/wp-content/plugins/ckeditor-for-wordpress/
+wp-content/plugins/enable-media-replace/
+wp-content/plugins/pressbooks-3/
+/wp-content/themes/*
 # Log files
 *.log
-
+epubcheck-5.1.0.zip
 # htaccess
 /.htaccess
+wp-content/plugins/pressbooks/*
 
 # All plugins
 #

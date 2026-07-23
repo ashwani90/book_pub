@@ -145,7 +145,7 @@ class Pdf extends Prince\Pdf {
 	 */
 	function convert() {
 		error_log('===== convert() started =====');
-		$filename         = $this->timestampedFileName( '._oss.pdf' );
+		$filename         = $this->timestampedFileName( '..pdf' );
 		$this->outputPath = $filename;
 		$args             = [];
 		if ( defined( 'WP_ENV' ) && WP_ENV === 'development' ) {
@@ -165,20 +165,22 @@ class Pdf extends Prince\Pdf {
 		$doc->preserveWhiteSpace = false;
 		$dom                     = $doc->loadHTML( $contents );
 
-		error_log('Fetching XHTML...');
+		// error_log('Fetching XHTML...');
 		$config = $this->setConfigVariables();
-		error_log('XHTML fetched');
+		// error_log('XHTML fetched');
 		try {
-			error_log('Step1');
+			// error_log('Step 1');
 			$this->mpdf = new Mpdf( $config );
 			$this->setDocumentMeta();
 
 			// @see https://mpdf.github.io/reference/mpdf-functions/overview.html
 			$this->mpdf->SetBasePath( home_url( '/' ) );
 			$this->mpdf->SetCompression( true );
+			// error_log('Step 2');
 
 			// iterate over the xhtml domdocument
 			$this->iterator( $dom );
+			// error_log('Step 3');
 
 
 			/****************************************
@@ -192,12 +194,12 @@ class Pdf extends Prince\Pdf {
 			 * works but mpdf headers and footer functionality is lost
 			 *****************************************/
 			//$this->mpdf->WriteHTML( $contents ); // @codingStandardsIgnoreLine
-			error_log('write');
+			// error_log('write');
 			// $html = $dom->saveHTML($page);
 			// $this->writeHtmlInChunks($html);
 			// make the thing
 			$this->mpdf->Output( $this->outputPath, 'F' );
-			error_log('Out put written to ' . $this->outputPath);
+			// error_log('Out put written to ' . $this->outputPath);
 
 		} catch (\Throwable $e) {
 			error_log('Exception type: ' . get_class($e));
@@ -218,9 +220,20 @@ class Pdf extends Prince\Pdf {
 	 */
 	protected function writeHtmlInChunks(string $html): void
 	{
+		try{
+		// error_log("Writing time ");
 		// Small pages don't need chunking.
 		if (strlen($html) < 200000) {
-			$this->mpdf->WriteHTML($html);
+			try {
+				$this->mpdf->WriteHTML($html);
+				// error_log("Writing time 1");
+			} catch (\Exception $e) {
+				error_log('Exception type: ' . get_class($e));
+				error_log($e->getMessage());
+				error_log($e->getFile() . ':' . $e->getLine());
+				error_log($e->getTraceAsString());
+			}
+
 			return;
 		}
 
@@ -231,6 +244,7 @@ class Pdf extends Prince\Pdf {
 			-1,
 			PREG_SPLIT_DELIM_CAPTURE
 		);
+		// error_log("Writing time 2");
 
 		$buffer = '';
 		$limit  = 150000;
@@ -243,9 +257,15 @@ class Pdf extends Prince\Pdf {
 				$buffer = '';
 			}
 		}
-
+		// error_log("Writing time 3");
 		if ($buffer !== '') {
 			$this->mpdf->WriteHTML($buffer);
+			// error_log("Writing time 4");
+		}}catch(\Exception $e){
+			error_log('Exception type: ' . get_class($e));
+			error_log($e->getMessage());
+			error_log($e->getFile() . ':' . $e->getLine());
+			error_log($e->getTraceAsString());
 		}
 	}
 
@@ -374,17 +394,20 @@ class Pdf extends Prince\Pdf {
 	 * @param \DOMDocument $dom
 	 */
 	protected function iterator( \DOMDocument $dom ) {
+		try {
 		// assumes xhtml output has all pages in the first level children of body node
 		// ex: body->div
 		$body = $dom->getElementsByTagName('body')->item(0);
 
 		$pages = [];
+		// error_log('Step 4');
 
 		foreach ($body->childNodes as $node) {
 
 			if ($node->nodeType !== XML_ELEMENT_NODE) {
 				continue;
 			}
+			// error_log('Step 5');
 
 			$class = $node->getAttribute('class');
 
@@ -405,21 +428,22 @@ class Pdf extends Prince\Pdf {
 			}
 		}
 
+		// error_log('Step 6');
+
 		// first thing's first, gotta have a purty pikcher
 		if ( 1 === $this->options['mpdf_include_cover'] ) {
 			$this->addCover();
 		}
 
 		foreach ( $pages as $page ) {
-			error_log("Processing page is " . $page->nodeType . " with name " . $page->nodeName);
 			// avoid text nodes
 			if ( XML_ELEMENT_NODE === $page->nodeType ) {
+				// error_log('Step 7');
+				// error_log($page->ownerDocument->saveHTML($page));
 
 				/****************************************
 				 * Logic
 				 *****************************************/
-				error_log('Class: ' . $page->getAttribute('class'));
-				error_log('ID: ' . $page->getAttribute('id'));
 				$class = $page->getAttribute('class');
 
 				if (strpos($class, 'front-matter') !== false)
@@ -467,7 +491,7 @@ class Pdf extends Prince\Pdf {
 							'pagenumstyle' => '1',
 						];
 						$toc_level      = 1;
-						$element        = 'h2';
+						$element        = 'h1';
 						$class          = 'chapter-title';
 						$title          = $this->getNodeValue( $page, $element, $class );
 						$add_to_toc     = true;
@@ -522,7 +546,6 @@ class Pdf extends Prince\Pdf {
 				 *****************************************/
 				$this->mpdf->AddPageByArray( $page_options );
 				static $first = true;
-				error_log("Adding $context_class page to document with title: $title");
 
 				if (!$first) {
 					$this->mpdf->WriteHTML('<pagebreak />');
@@ -550,7 +573,7 @@ class Pdf extends Prince\Pdf {
 				/****************************************
 				 * Do the thing
 				 *****************************************/
-
+				// error_log('Step 8');
 				$html = $dom->saveHTML($page);
 				$this->writeHtmlInChunks($html);
 
@@ -558,7 +581,12 @@ class Pdf extends Prince\Pdf {
 				// $this->mpdf->WriteHTML( $html );
 			}
 		}
-
+		} catch (\Exception $e) {
+			error_log('Exception type: ' . get_class($e));
+			error_log($e->getMessage());
+			error_log($e->getFile() . ':' . $e->getLine());
+			error_log($e->getTraceAsString());
+		}
 	}
 
 	/**
@@ -672,17 +700,22 @@ class Pdf extends Prince\Pdf {
 	private function getNodeValue( \DOMElement $content, $element, $class ) {
 		$title = '';
 
+		// error_log("Inside toc");
 		if ( ! empty( $content ) ) {
 			$headings = $content->getElementsByTagName( $element );
 
+
 			foreach ( $headings as $heading ) {
 				$title = ( $class === $heading->getAttribute( 'class' ) ) ? $heading->nodeValue : '';
+
 				if ( $title ) {
 					break;
 				}
 			}
 		}
-
+		if ($class == 'chapter-title') {
+			error_log("Chapter Title: " . $title);
+		}
 		return $title;
 	}
 

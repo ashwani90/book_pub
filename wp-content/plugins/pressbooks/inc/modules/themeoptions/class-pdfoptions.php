@@ -1996,8 +1996,8 @@ class PDFOptions extends \Pressbooks\Options {
 		}
 
 		// Page dimensions
-		$width = $options['pdf_page_width'];
-		$height = $options['pdf_page_height'];
+		$width = '8.5in';
+		$height = '11in';
 
 		if ( $v2_compatible ) {
 			$styles->getSass()->setVariables(
@@ -2023,7 +2023,7 @@ class PDFOptions extends \Pressbooks\Options {
 		}
 
 		// Should we display crop marks? True or false (default).
-		if ( 1 === absint( $options['pdf_crop_marks'] ) ) {
+		if ( 1 === absint( 1 ) ) {
 			if ( $v2_compatible ) {
 				$styles->getSass()->setVariables(
 					[
@@ -2036,7 +2036,7 @@ class PDFOptions extends \Pressbooks\Options {
 		}
 
 		// Hyphens?
-		if ( 1 === absint( $options['pdf_hyphens'] ) ) {
+		if ( 1 === absint( 1 ) ) {
 			if ( $v2_compatible ) {
 				$styles->getSass()->setVariables(
 					[
@@ -2116,7 +2116,7 @@ class PDFOptions extends \Pressbooks\Options {
 		}
 
 		// Should we display the TOC? True (default) or false.
-		if ( ! $options['pdf_toc'] ) {
+		// if ( ! $options['pdf_toc'] ) {
 			if ( $v2_compatible ) {
 				$styles->getSass()->setVariables(
 					[
@@ -2126,7 +2126,7 @@ class PDFOptions extends \Pressbooks\Options {
 			} else {
 				$scss .= "#toc { display: none; } \n";
 			}
-		}
+		// }
 
 		// Widows
 		if ( isset( $options['widows'] ) ) {
