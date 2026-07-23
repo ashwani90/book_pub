@@ -1,0 +1,244 @@
+$footer-font-family: $font-2; // "Noto Serif", serif !default;
+// TODO use this varible in the below rules
+$footer-font-size: 7pt !default;
+
+$is-complex-footers: 0 !default;
+@if $is-complex-footers != 0 {
+      
+        .page-running-footer-l, .page-running-footer-r, .fm-running-footer-l, .fm-running-footer-r {
+            .label.body {
+                display: inline-block;
+                font-size: 8pt;
+                width: max-content;
+                       }
+        }
+        
+        .page-running-footer-l {
+            text-align: left;
+            .label.body {
+                &::before {
+                    content: $chapter-page-number-left $left-running-separator;
+                    font-size: 8pt;
+                }
+            }
+            position: running(pageRunningFooterL);
+        }
+        .page-running-footer-r {
+            text-align: right;
+            .label.body {
+                &::after {
+                    content: $right-running-separator $chapter-page-number-right;
+                    font-size: 8pt;
+                }
+            }
+            position: running(pageRunningFooterR);
+        }
+        
+        .fm-running-footer-l {
+            text-align: left;
+            .label.body {
+                &::before {
+                    content: counter(page, upper-roman) $left-running-separator;
+                    font-size: 8pt;
+                }
+            }
+            position: running(fmRunningFooterL);
+        }
+        .fm-running-footer-r {
+            text-align: right;
+            .label.body {
+                &::after {
+                    content: $right-running-separator counter(page, upper-roman);
+                    font-size: 8pt;
+                }
+            }
+            position: running(fmRunningFooterR);
+        }
+        
+    @page {
+        @top-left { content: none !important; }
+        @top-right { content: none !important; }
+        @bottom-center { content: none !important;} 
+      }
+
+    @page:right {
+        @bottom-right {
+            content: element(pageRunningFooterR) !important;
+        }
+
+        @bottom-left {
+            content: "";
+        }
+    }
+    @page:left {
+        @bottom-left {
+            content: element(pageRunningFooterL) !important;
+        }
+
+        @bottom-right {
+            content: "";
+        }
+    }
+
+    @page front-matter:left {
+        @bottom-right {
+            content: "";
+        }
+
+        @bottom-left {
+            content: element(fmRunningFooterL) !important;
+        }
+    }
+    @page front-matter:right {
+        @bottom-right {
+            content: element(fmRunningFooterR) !important;
+        }
+
+        @bottom-left {
+            content: "";
+        }
+    }
+}
+@else {
+    .page-running-footer-l, .page-running-footer-r, .fm-running-footer-l, .fm-running-footer-r {
+        display: none !important;
+    }
+     /* Global @page styles */
+    @page {
+        @top-left { content: none !important; }
+        @top-right { content: none !important; }
+        @bottom-center { content: none !important; }
+    }
+    
+    /* Left pages: page number | book title */
+    @page chapter:left,
+        part:left,
+        back-matter:left {
+        @bottom-left {
+            content: counter(page) '\A0\A0|\A0\A0' string(book-title);
+        }
+        @bottom-right {
+            content: none;
+        }
+    }
+
+    /* Right pages: section title | page number */
+    @page chapter:right,
+        part:right,
+        back-matter:right {
+        @bottom-left {
+            content: none;
+        }
+        @bottom-right {
+            //color: blue;
+            content: string(section-title) '\A0\A0|\A0\A0' counter(page);
+        }
+    }
+
+    /* First pages: only page number (right side) */
+    @page chapter:first:right,
+        part:first:right,
+        back-matter:first:right {
+        @bottom-right {
+            content: counter(page);
+        }
+    }
+
+    /* First left page of chapter */
+    @page chapter:first:left {
+        @bottom-left {
+            content: counter(page);
+        }
+    }
+
+    /* Introduction pages: lowercase roman numerals */
+    @page introduction:right,
+    front-matter:right,
+    post-introduction:right {
+        @bottom-right {
+            content: string(section-title) '\A0\A0|\A0\A0' counter(page, lower-roman);
+        }
+    }
+    @page introduction:first:right,
+    front-matter:first:right,
+    post-introduction:first:right {
+        @bottom-right {
+            content: counter(page, lower-roman);
+        }
+    }
+    @page introduction:left,
+    front-matter:left,
+    post-introduction:left {
+        @bottom-left {
+            content: counter(page, lower-roman) '\A0\A0|\A0\A0' string(book-title);
+        }
+    }
+    div.front-matter + :not(.front-matter).part,
+    div.front-matter + :not(.front-matter).chapter {
+        prince-page-group: start;
+        counter-reset: page 1; 
+      }
+      #toc + :not(#toc).front-matter {
+          prince-page-group: start;
+          counter-reset: page 1; 
+        }
+    div.front-matter.introduction {
+        prince-page-group: start;
+        counter-reset: none;
+      }
+
+    
+}
+@page {
+    @bottom-left {      
+        font-family: $font-2;
+        font-size: 8pt;
+    }
+  
+    @bottom-right {      
+        font-family: $font-2;  
+        font-size: 8pt;
+    }
+  }
+
+  @page :blank {
+    @top {
+      content: none!important;
+    }
+
+    @top-right {
+      content: none!important;
+    }
+
+    @top-right-corner {
+      content: none!important;
+    }
+
+    @top-left {
+      content: none!important;
+    }
+
+    @top-left-corner {
+      content: none!important;
+    }
+
+    @bottom {
+      content: none!important;
+    }
+
+    @bottom-right {
+      content: none!important;
+    }
+
+    @bottom-right-corner {
+      content: none!important;
+    }
+
+    @bottom-left {
+      content: none!important;
+    }
+
+    @bottom-left-corner {
+      content: none!important;
+    }
+  }

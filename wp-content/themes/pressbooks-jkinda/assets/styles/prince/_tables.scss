@@ -1,0 +1,41 @@
+div.part .ugc table,
+div.front-matter .ugc table, 
+div.chapter .ugc table,
+div.back-matter .ugc table  {
+    width:100%;
+    max-width: 100%;
+    table-layout: fixed;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-size:if-map-get($body-font-size, $type);
+    th {
+        font-size:if-map-get($body-font-size, $type);
+    }
+    td {
+        font-size:if-map-get($body-font-size, $type);
+    }
+}
+
+h1 {
+    font-size: 16pt;
+  }
+
+  h2 {
+    font-size: 14pt;
+  }
+
+  h3 {
+    font-size: 12pt;
+  }
+
+  h4 {
+    font-size: 11pt;
+  }
+
+  h5 {
+    font-size: 10pt;
+  }
+
+  h6 {
+    font-size: 9pt;
+  }

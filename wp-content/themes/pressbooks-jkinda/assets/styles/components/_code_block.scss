@@ -1,0 +1,67 @@
+
+// 1. Import Google Font (only works if SCSS compiler allows external imports)
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+// 2. Main Code Block Styling
+.site-content {
+  pre {
+    background: #f5f5f5;
+    padding: 1rem;
+    border: 1px solid #ccc;    
+    font-size: 1.125rem;
+    line-height: 1.5;
+    counter-reset: line;
+    overflow-x: auto;
+    display: flex;
+  
+    code {
+      display: flex;
+      flex-direction: column;
+      font-family: "Source Code Pro", monospace;
+      width: 100%;
+  
+      span {
+        display: block;
+        counter-increment: line;
+        white-space: pre;
+  
+        &::before {
+          content: counter(line);
+          display: inline-block;
+          width: 2em;
+          margin-right: 1em;
+          text-align: left;
+          color: #888;
+          user-select: none;
+        }
+  
+        // Input Line
+        &.input {
+          color: #005cc5;
+        }
+        &.input::before {
+          content: counter(line) " >";
+        }
+  
+        // Output Line
+        &.output {
+          color: #22863a;
+          font-style: italic;
+        }
+      }
+    }
+    .code-block-output {
+      background: #e6e6e6;
+      padding:10px;
+      display: flex;
+      flex-direction: column;
+      margin-top: .5rem;
+      margin-left:50px;
+      span {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}

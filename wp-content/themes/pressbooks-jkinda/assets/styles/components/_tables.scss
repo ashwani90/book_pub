@@ -1,0 +1,119 @@
+@import "variables";
+
+#{$all-types} {
+
+  figure.table[style*="float:left;"],
+  div.table[style*="float:left;"] {
+    margin-right: $margin-small;
+  }
+
+  figure.table[style*="float:right;"],
+  div.table[style*="float:right;"] {
+    margin-left: $margin-small;
+  }
+
+  /* Base table structure */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: $table-border-width solid $table-border-color;
+    // margin: 1em 0;
+  }
+
+  /* Header styles */
+  thead {
+    font-weight: bold;
+  }
+
+  th {
+    border-bottom: $table-header-bottom-border;
+    padding: $table-cell-padding;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-size: 1.125rem;
+  }
+
+  /* Cell styles */
+  td {
+    border: $table-cell-border;
+    padding: $table-cell-padding;
+    text-align: left;
+    vertical-align: top;
+    font-size: 1.125rem;
+
+    /* Paragraphs within cells */
+    p {
+      margin: 0;
+      padding:0px;
+      text-indent: 0;
+    }
+  }
+
+  td.table-source {
+    border-bottom-color: white;
+    border-right-color: white;
+    border-left-color: white;
+  }
+
+  /* Special table classes */
+  .spec-tbl-col-header {
+    text-align: left;
+    font-weight: $spec-col-header-weight;
+  }
+
+  p.spec-tbl-text {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  span.spec-tbl-number {
+    color: $tbl-number-color;
+  }
+
+  /* Nested table styles */
+  .chapter {
+    table {
+      td {
+        p {
+          text-indent: 0;
+        }
+      }
+    }
+  }
+
+  /* Table variants */
+  td.TableNormal-C,
+  td.TableGrid-C {
+    border: $table-cell-border;
+    padding: $table-cell-padding;
+  }
+}
+
+/*
+.site-content{
+.chapter {
+  h1{
+  color: #0d2778;
+  font-size: 19px !important;
+  font-weight: 600 !important;
+  font-family: "proxima-nova", san serif !important;
+  span {
+    color: #0d2778;
+  }
+}
+p {  
+  margin-top:1.5em;
+}
+ 
+h2 {
+  font-size: 18px !important;
+  font-weight: normal !important;  
+  color: #b84664;
+}
+h3 {
+  font-size: 14px;
+  font-weight: normal !important;  
+}
+}
+}
+*/

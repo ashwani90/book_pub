@@ -1,0 +1,8 @@
+// Book-specific overrides (optional)
+.site-content {
+    // Add any unique spacing or formatting specific to the referenced book
+    p {
+      word-spacing: normal; // Ensure consistency
+      margin-top:1.5em;
+    }
+  }

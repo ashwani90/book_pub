@@ -1,0 +1,129 @@
+// _running-footers.scss
+
+// -----------------------------------
+$footer-font-primary: "proxima-nova", sans-serif !default;
+$footer-font-secondary: "minion-pro", serif !default;
+$footer-base-size: 9pt !default;
+$footer-line-height: 1.3 !default;
+$footer-color: #333 !default;
+
+// 2. TEMPLATE-SPECIFIC DEFAULTS (From original files)
+// --------------------------------------------------
+$footer-config: (
+  '2402': (
+    font: "proxima-nova",
+    spacing: '\A0\A0',       // 2 spaces
+    separator: '\A0\A0|\A0\A0',
+    first-page-indent: '\A0\A0\A0'
+  ),
+  '2403': (
+    font: "proxima-nova",
+    spacing: '\A0\A0\A0\A0', // 4 spaces
+    separator: '\A0\A0|\A0\A0',
+    roman-numerals: true
+  ),
+  '2404': (
+    font: "minion-pro",
+    spacing: '\A0\A0\A0\A0\A0', // 5 spaces
+    separator: '\A0\A0-\A0\A0', // dash separator
+    special-borders: true
+  ),
+  '2405': (
+    font: "proxima-nova",
+    spacing: '\A0\A0\A0',
+    separator: '\A0',          // single space
+    lowered-position: 5px
+  ),
+  '2406': (
+    font: "minion-pro",
+    spacing: '\A0\A0\A0\A0',
+    separator: ' • ',
+    circled-numbers: true
+  )
+) !default;
+
+// 3. MIXINS (Reusable logic)
+// --------------------------
+@mixin apply-footer($template: '2403') {
+  $config: map-get($footer-config, $template);
+  
+  div.chapter {
+    string-set: chapter-number-title attr(title);
+  }
+
+  // Base footer styles
+  @page {
+    @bottom {
+      font-family: map-get($config, 'font'), $footer-font-primary;
+      font-size: $footer-base-size;
+      line-height: $footer-line-height;
+      color: $footer-color;
+    }
+  }
+
+  // Chapter right pages
+  @page chapter:right {
+    @bottom-right {
+      content: string(chapter-number-title) 
+               map-get($config, 'separator') 
+               $chapter-page-number-right;
+      @if map-has-key($config, 'special-borders') {
+        border-top: 1px solid #ccc;
+        padding-top: 3px;
+      }
+    }
+  }
+
+  // Chapter left pages
+  @page chapter:left {
+    @bottom-left {
+      content: if(map-get($config, 'circled-numbers'), 
+               '◯' counter(page) '◯', 
+               counter(page))
+               map-get($config, 'separator') 
+               string(book-title);
+      @if map-has-key($config, 'lowered-position') {
+        margin-bottom: map-get($config, 'lowered-position');
+      }
+    }
+  }
+
+  // First page special
+  @page chapter:first:right {
+    @bottom-right {
+      content: "" string(blank) 
+               map-get($config, 'spacing') 
+               if(map-get($config, 'roman-numerals'),
+                  counter(page, lower-roman),
+                  counter(page));
+    }
+  }
+
+  // Front matter
+  @page front-matter {
+    @bottom {
+      @if map-get($config, 'roman-numerals') {
+        content: counter(page, lower-roman);
+      }
+    }
+  }
+}
+
+// 4. DEFAULT IMPLEMENTATION (2403 as baseline)
+// -------------------------------------------
+:root {
+  @include apply-footer('2403');
+}
+
+// 5. TEMPLATE OVERRIDES (Optional)
+// -------------------------------
+.template-2402 { @include apply-footer('2402'); }
+.template-2404 { @include apply-footer('2404'); }
+.template-2405 { @include apply-footer('2405'); }
+.template-2406 { @include apply-footer('2406'); }
+
+// 6. UTILITY CLASSES (For special cases)
+// -------------------------------------
+.footer-roman { --footer-number-format: lower-roman; }
+.footer-circled { --footer-number-format: circled; }
+.footer-no-title { --footer-show-title: none; }

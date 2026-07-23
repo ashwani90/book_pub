@@ -1,0 +1,35 @@
+// $adobe-fonts-url: "https://use.typekit.net/anx5haq.css"; // Placeholder for dynamic URL
+
+$proxima-nova: "proxima-nova", sans-serif;
+$minion-pro: "minion-pro", serif;
+
+@import 'theme/fonts/font';
+
+@import 'font-stack-epub'; // Dynamically generated
+
+$serif-epub: serif !default;
+$sans-serif-epub: sans-serif !default;
+
+// Load Shape Shifter fonts, if any.
+@import 'shapeshifter-font-stack-web';
+
+$shapeshifter-font-1-is-serif: true !default;
+$shapeshifter-font-2-is-serif: true !default;
+
+// Insert custom fonts for your theme into the font stacks below. Always end the
+// stack with $serif-epub or $sans-serif-epub, as appropriate—this allows custom
+// language support to be added dynamically.
+
+@if variable-exists(shapeshifter-font-1) {
+  $font-1: $shapeshifter-font-1, if($shapeshifter-font-1-is-serif, $serif-epub, $sans-serif-epub);
+} @else {
+  $font-1: $proxima-nova;
+}
+
+@if variable-exists(shapeshifter-font-2) {
+  $font-2: $shapeshifter-font-2, if($shapeshifter-font-2-is-serif, $serif-epub, $sans-serif-epub);
+} @else {
+  $font-2: $proxima-nova;
+}
+
+$font-3: $font-2;

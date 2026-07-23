@@ -1,0 +1,220 @@
+/* Title Page Styles */
+@import '../components/variables';
+
+// $font-header: "minion-pro"; //"New Athena Unicode" !default;
+$sans-serif: sans-serif !default;
+$font-subtitle: 'proxima-nova';
+
+#title-page {
+  //position: relative;
+  // min-height: 100%; /* Full page height */
+  //height: 100vh; /* Full page height */
+  // page-break-after: avoid;
+  // page-break-before: auto;
+  //overflow: hidden;
+
+  .title-block {
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    // font-size: 26pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+
+    h1.title {
+      // position: absolute;
+      // top: 12.5%;
+      // left: 50%;
+      // transform: translateX(-50%);
+      font-family: $font-header; //, $sans-serif;
+      font-size: 26pt !important;
+      text-align: center;
+      margin: 0;
+      width: 100%;    
+    }
+  }
+
+  h2.subtitle {
+    // position: absolute;
+    // top: 24%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    font-family :$font-body;
+    font-weight: 100 !important;
+    font-size: 16pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  h2.edition {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  .author-block {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  h2.pb_author_display,
+  h3.author {
+    // position: absolute;
+    // top: 60%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    font-weight: 100 !important;
+    font-size: 14pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  h3.affiliation {
+    // position: absolute;
+    // top: 74%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    font-weight: 100 !important;
+    font-size: 10pt !important;
+    text-align: center;
+    font-style: italic;
+    margin: 0.5in 0 0 0;
+    width: 100%;
+  }
+
+  // h4.publisher {
+  //   position: absolute;
+  //   top: 75%;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   font-size: 12pt !important;
+  //   text-align: center;
+  //   margin: 0;
+  //   width: 100%;
+  // }
+  h4.publisher {
+    // position: absolute;
+    // top: 75%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    // font-size: 12pt !important;
+    // text-align: center;
+    // margin: 0;
+    // width: 100%;
+
+    font-size:  12pt !important;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+  }
+
+  h5.publisher-city {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12pt !important;
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+    width: 100%;
+  }
+
+  // div.publisher-logo {
+  //   position: absolute;
+  //   top: 91%;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   height: 3.5rem;
+  //   width: auto;
+  // }
+  .publisher::before {
+    display: block;
+    height: 3.5rem;
+    // content: url($theme_root_uri + "/assets/images/cognella_clr_city_300ppi.jpg");
+  }
+}
+  
+  #copyright-page > .ugc {
+    max-width: 80%;
+    margin:2in auto 0;
+    p {
+      text-align: justify;
+    }
+  }
+  
+  .chapter-title-wrap {
+    margin-top: 1in;
+    h3.chapter-number {
+      // text-transform: uppercase;
+      color:gray;
+      font-weight: 400;
+      margin-bottom:15pt;
+      span {
+        border-bottom: solid 1px;
+        padding-bottom: 10px;
+      }
+    }
+
+    h2.chapter-title,
+    h2.chapter-subtitle {
+      text-align: center;
+    }
+  }
+
+  div.reading .chapter-title-wrap h3.chapter-number {
+    text-align: right;
+  }
+  
+  .front-matter-title-wrap { 
+    .front-matter-title {
+      margin-top: 1.2in;
+      font-size: 2rem;
+      border-bottom: solid;
+    }
+    .chapter-subtitle {
+      font-size: 1.2rem;
+    }
+  }
+  .back-matter-title-wrap { 
+    .back-matter-title {
+      margin-top: 1.2in;
+      font-size: 2rem;
+      border-bottom: solid;
+    }
+    .chapter-subtitle {
+      font-size: 1.2rem;
+    }
+  }
+
+  .chapter,
+  .part {
+    .ugc {
+        p.credit,
+        p.bibliography {
+          font-size: 9pt;
+          line-height: normal;
+    }
+  }
+}
+
+// html, body {
+//   height: 100%;
+// }

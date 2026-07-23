@@ -1,0 +1,10 @@
+div.chapter,
+div.front-matter,
+div.back-matter {
+    /* fix upstream title number */
+    div.chapter-title-wrap {
+       .chapter-number::after {
+            content: "" !important;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+// variables.scss
+
+$all-types: ".site-content, section.part, section.chapter, section.front-matter, section.back-matter, div.part .ugc, div.chapter .ugc, div.front-matter .ugc, div.back-matter .ugc";
+
+// $content-type-label: "Chapter";  // <- dynamically injected
+// $content-ordinal: 1;             // <- dynamically injected
+
+// // Expose as CSS custom properties 
+// :root {
+//   --content-type-label: "#{$content-type-label}";
+//   --content-ordinal: "#{$content-ordinal}";
+// }
+
+// // Example usage in SCSS (prefix title automatically)
+// #main .site-content h1.entry-title::before {
+//   content: "#{$content-type-label} #{$content-ordinal}: ";
+// }
+
+$font-body: $font-1;
+$font-header: $font-2;
+
+// Define variables for text styling
+$text-indent-default: 2rem;
+$text-indent-reset: 0rem;
+$normal-font-size: inherit;
+$normal-font-weight: normal;
+$figure-float: right;
+$figure-margin: 20px 0;
+
+// Use header font for figure, image and table captions
+$figure-caption-font-family: $font-2;
+$table-caption-font-family: $font-2;
+
+// Define margin variables
+$margin-small: 10px;
+$margin-medium: 15px;
+$margin-large: 20px;
+
+// Greys
+$dark-grey: #231f20;
+$muted-grey: #eae8e6;
+$charcoal: #545454;
+
+// TABLE VARIABLES
+$table-border-color: #000 !default;
+$table-border-width: 1px !default;
+$table-cell-padding: 8px !default;
+$table-header-bottom-border: 3px solid $table-border-color !default;
+$table-cell-border:1px solid $table-border-color !default;
+$table-bg-color: #fff !default;
+
+// SPECIAL TABLE STYLES
+$spec-col-header-weight: 500 !default;
+$tbl-number-color: black !default;
+
+// FIG CAPTION
+$figcaption-font-size: 0.8rem;
+
+// FONT VARIABLES FOR TEXTBOXES
+$font-for-header-textbox: inherit !default; 
+$font-for-textbox-body: inherit !default;

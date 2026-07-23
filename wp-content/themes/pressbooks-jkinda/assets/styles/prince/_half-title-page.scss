@@ -1,0 +1,11 @@
+#half-title-page {
+    display: flex;    
+    justify-content: center;    
+    margin-top: 10cm; // Roughly 1/3 down the page
+    text-align: center;
+  
+    .title {
+      margin: 0;      
+      text-align: center;
+    }
+  }

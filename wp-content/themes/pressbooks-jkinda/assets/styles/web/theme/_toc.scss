@@ -1,0 +1,631 @@
+header.header {
+    padding: 3rem 1rem 12rem 1rem;
+  }
+  
+  section.part.seco-number {
+    font-family: $ff-ITCAvantGardeGothicPro;
+  }
+  
+  .seco-conclusion {
+    font-family: $ff-ProximaNova;
+  }
+  
+  section.chapter h1.cho-conclusion {
+    font-family: $font-header;
+  }
+  
+  
+  // --- Front Matter: Title Pages: Title --- //
+  section.front-matter header,
+  section.back-matter header {
+    h1 {
+      color: black;
+      font-family: $font-header, $sans-serif;
+      font-size: 2.223em;
+      line-height: 2.7rem;
+      display: block;
+      margin: 0 0 1rem 0;
+      font-weight: $weight-bold;
+      hyphens: none;
+      text-align: left;
+      text-transform: $txt-transform;
+    }
+  }
+  
+  // --- Front Matter: author --- //
+  section.front-matter header [data-type='author'] {
+    display: block;
+    margin-top: 0 !important;
+    font-family: $font-body, $sans-serif;
+    font-size: 1rem;
+    font-weight: $weight-book !important;
+    hyphens: none;
+    text-align: left;
+    text-indent: 0;
+    text-transform: capitalize;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+  
+  // --- Front Matter: Title Pages: text --- //
+  //section.front-matter p,
+  table {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-weight: $weight-light;
+    hyphens: initial;
+    text-align: justify;
+    font-size: 1rem;
+  }
+  
+  .chapter table {
+    margin-bottom: .5em;
+  }
+  
+  .front-matter {
+    table {
+      border-bottom: none;
+      border-top: solid 3px black;
+  
+      tr {
+        &:first-child td {
+          border-bottom: solid 1px black;
+        }
+        &:nth-child(even) {
+          background-color: lightgray;
+        }
+        td {
+          border-right: solid 1px white;
+        }
+      }
+    }
+  }
+  
+  section.front-matter > p:first-of-type::first-letter,
+  section.back-matter > p:first-of-type::first-letter,
+    /*section.part > p:first-of-type::first-letter,*/
+  section.chapter > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3rem;
+    line-height: 3rem;
+    padding-right: 0.214rem;
+  }
+  
+  // --- SHARED --- //
+  section.part p,
+  section.chapter p,
+  section.front-matter p,
+  section.back-matter p {
+    margin-top: 0;
+    font-size: 1rem;
+    font-family: $font-box-body, $sans-serif;
+    font-weight: normal;
+    hyphens: initial;
+    text-align: justify;
+  }
+  
+  // --- PART --- //
+  
+  //TODO: in `.xsl` file - condition for `PartSectionNumber` does not apply
+  .seco-number,
+  section.part header > h1 {
+    font-family: $font-header, $sans-serif;
+    font-size: 3.5rem;
+    font-weight: $weight-bold;
+    hyphens: none;
+    text-align: center;
+    text-transform: $txt-transform;
+  }
+  
+  section.part .seco-title {
+    display: block;
+    margin: 3rem 0 0.5rem;
+    font-family: $font-header, $sans-serif;
+    font-size: 18pt;
+    font-weight: $weight-light;
+    margin-top: 3rem;
+    letter-spacing: .35rem;
+    text-align: center;
+    text-transform: $txt-transform;
+  }
+  
+  // changes by DIG-535
+  .part .part.title.seco-title {
+    display: block;
+    font-family: "proxima-nova", sans-serif !important;
+    font-size: 22pt !important;
+    font-weight: 700;
+    margin-top: 3rem;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 26pt;
+  }
+  
+  .seco-number,
+  .part .part-as-chapter-title-wrap .part-title {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+      font-family: "proxima-nova", sans-serif !important;
+      font-size: 10pt !important;
+      font-style: normal;
+      font-weight: normal;
+      hyphens: none;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom-style: solid;
+      border-bottom-width: 1pt;
+      line-height: 2.8rem;
+      letter-spacing: 3px;
+  }
+  
+  section.part .seco-subtitle {
+    display: block;
+    margin: 1rem 0 2rem;
+    padding: 1rem 0 0;
+    font-family: $font-header, $sans-serif;
+    font-weight: $weight-book;
+    font-size: 1.45rem;
+    font-style: italic;
+    margin-top: 1rem;
+    text-align: center;
+    text-transform: none;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+  
+  section.part header h1 span {
+    border-bottom: none 0 $clr-Dark-Gray;
+    display: inline;
+    margin: 0;
+    padding-bottom: 0;
+    font-family: $font-header, $sans-serif;
+    font-size: 0.76rem;
+    font-style: normal;
+    font-weight: $weight-book;
+    line-height: 0.76rem;
+    text-align: center;
+    text-transform: none;
+  }
+  
+  section.part header h1 span::before {
+    content: '';
+    text-transform: $txt-transform;
+  }
+  
+  section.part header h1 span::after {
+    content: '';
+  }
+
+  section.part header h1 span {
+    display: inline-block;
+  }
+  
+  // --- CHAPTER --- //
+  /*section.chapter header {
+    margin-bottom: .5em;
+  }*/
+  
+  section.chapter header h1 {
+    display: inline;
+    margin: 0;
+    font-family: $font-header, $sans-serif;
+    font-size: 1.44rem;
+    font-style: normal;
+    font-weight: normal;
+    hyphens: none;
+    text-align: left;
+    text-transform: none;
+  }
+  
+  // changes by DIG-535
+  .cho-number,
+  .rdo-number {
+    margin: 0;
+    position: absolute;
+    top: -12.1rem;
+    line-height: 1.4rem;
+    // padding: 3.4rem 0 3.4rem 0;
+    // background-color: $clr-Gray;
+    // color: white;
+  
+    font-stretch: ultra-expanded;
+    font-style: normal;
+    // font-family: $font-header, $sans-serif;
+    // font-size: 1.6rem;
+    // font-weight: $weight-book;
+    // text-align: center;
+    // text-transform: $txt-transform;
+  
+    border-bottom: none;
+    letter-spacing: .2rem;
+    word-spacing: normal;
+    hyphens: initial;
+    margin-left: 30%;
+    width: 36%;
+  }
+  
+  // changes by DIG-535
+  .cho-number,
+  .rdo-number {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 12pt !important;
+    font-weight: 100;
+    text-transform: uppercase !important;
+    font-family: "proxima-nova", serif !important;
+    text-align: left;
+    padding: 0pt 0pt 14pt 0pt;
+  }
+  .cho-number {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .cho-number,
+    .rdo-number {
+      display: inline;
+    }
+  }
+  
+  section.chapter header h1.entry-title {
+    display: block;
+    margin-bottom: .75em;
+  }
+  
+  section.chapter header h1.entry-title span {
+    display: none;
+  }
+  
+  // changes by DIG-535
+  .cho-title,
+  section.chapter header > h1 {
+    // font-family: $font-header, $sans-serif;
+    // font-size: 2rem;
+    line-height: 2.3rem;
+    font-weight: $weight-bold;
+  }
+  
+  section.chapter .cho-subtitle,
+  .front-matter .cho-subtitle,
+  .back-matter .cho-subtitle {
+    font-family: $font-header, $sans-serif;
+    font-size: 16pt;
+    font-weight: $weight-light;
+    text-align: left;
+    text-transform: none;
+    margin: 0;
+    margin-top: 1rem;
+  }
+  
+  //TODO: in `.xsl` file - condition for `PartSectionConclusion` does not apply
+  .seco-conclusion,
+  section.part-conclusion header > h1 {
+    font-family: $font-header, $sans-serif;
+    font-size: 18pt;
+    font-weight: $weight-light;
+    text-transform: $txt-transform;
+    text-align: center;
+  }
+  
+  section.part-conclusion header {
+    text-align: center;
+    margin-bottom: .8rem;
+  }
+  
+  //TODO: in `.xsl` file - condition for `ChapterConclusion` does not apply
+  .cho-conclusion,
+  section.chapter-conclusion header > h1 {
+    font-family: $font-header, $sans-serif;
+    font-size: 22pt;
+    font-weight: $weight-bold;
+    text-align: left;
+    text-transform: none;
+  }
+  
+  section.chapter-conclusion header {
+    margin-bottom: 1rem;
+  }
+  
+  /*
+  section.chapter .cho-author::before {
+    content: 'by\\00A0';
+    text-transform: lowercase !important;
+  }
+  */
+  
+  section.chapter .cho-author,
+  .front-matter .cho-author,
+  .back-matter .cho-author,
+  section.chapter header [data-type='author'] {
+    display: block;
+    margin-bottom: 3em;
+    margin-top: 1.1rem;
+    font-family: $font-body, $sans-serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: $weight-book;
+    hyphens: none;
+    text-align: left;
+    text-indent: 0;
+    text-transform: capitalize;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+  
+  .front-matter .indent,
+  .part .indent,
+  .chapter .indent,
+  .back-matter .indent,
+  body#tinymce.wp-editor .indent {
+    text-indent: 2rem;
+  }
+  
+  .body,
+  .bd-text,
+  .bd-text pre,
+  .bd-flush,
+  .bd-intro,
+  section.front-matter p.bd-intro,
+  .first-char,
+  .bd-inline,
+  .bd-ref,
+  .bd-notes,
+  .bd-indent,
+  .bd-centered,
+  .import-Bibliography,
+  .import-Normal {
+    font-family: $font-body, $sans-serif;
+    font-size: 1rem;
+    white-space: pre-line;
+  }
+  
+  section.part p.bd-intro,
+  section.chapter p.bd-intro,
+  section.reading p.bd-intro {
+    margin-top: 2rem;
+  }
+  
+  .front-matter a, .part a, .chapter a, .back-matter a {
+    color: blue;
+  }
+  
+  .block-reading-meta {
+    display: none!important;
+  }
+  
+  .no-navigation.single #content {
+    max-width: none!important;
+    width: 92%!important;
+  }
+  
+  .glossary-term {
+    background: transparent;
+    border-radius: 0;
+    border: 1px dotted transparent;
+    border-bottom: 1px dotted blue;
+    color: blue;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+    text-transform: inherit;
+    vertical-align: unset;
+  }
+  
+  .indent {
+    text-indent: 2rem;
+  }
+  
+  .noindent {
+    text-indent: 0;
+  }
+  
+  // changes by DIG-535
+  .bd-ref {
+    font-size: $font-size-web-min-pt !important;
+    margin: 0 0 0 2rem;
+    line-height: 1.2;
+    text-indent: -2rem;
+    text-align: left;
+  }
+  
+  .bd-indent {
+    // TODO: review use of rem units for margins
+    margin-left: 2rem;
+  }
+  
+  .bd-centered {
+    text-align: center !important;
+  }
+  
+  .first-char::first-letter {
+    float: left;
+    font-size: 3.2rem;
+    line-height: 2.4rem;
+    padding-right: 0.214rem;
+    padding-top: .2rem;
+  }
+  
+  div[class*='__part__'] > p:first-of-type {
+    margin-top: 2rem;
+  }
+  
+  // --- READING --- //
+  // changes by DIG-535
+  .rdo-title,
+  section.reading header > h1 {
+    // font-family: $font-header, $sans-serif;
+    // font-size: 2rem;
+    font-weight: $weight-regular;
+    margin-top: 1rem;
+    text-align: left;
+  }
+  
+  // changes by DIG-535
+  .cho-title,
+  .rdo-title,
+  .chapter.standard .chapter-title {
+    font-family: "proxima-nova", serif !important;
+    font-size: 15pt !important;
+  }
+  
+  .reading.rd-edi-intro {
+    font-family: $ff-ProximaNova, $sans-serif;
+    // font-size: 15pt;
+    font-size: 1.6rem;
+    font-weight: $weight-bold;
+    text-align: left;
+    text-transform: none;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.rd-edq-number`
+  .rd-edq-number {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-size: 12pt;
+    font-weight: $weight-light;
+    text-align: left;
+    text-transform: $txt-transform;
+  }
+  
+  .reading.rdo-subtitle {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-size: 14pt;
+    font-style: normal;
+    font-weight: $weight-light;
+    text-align: left;
+    text-transform: none;
+    margin-bottom: .5rem;
+    margin-top: 1rem;
+  }
+  
+  .reading.rdo-credit,
+  .import-ReadingCredit * {
+    font-family: $ff-PTSans, $sans-serif;
+    font-size: $font-size-web-min-pt;
+    line-height: normal;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  // changes by DIG-535
+  .reading.rdo-author {
+    font-family: $ff-ProximaNova, $sans-serif;
+    // font-size: 9pt;
+    font-size: 0.85rem;
+    font-style: italic;
+    // margin-bottom: 2rem;
+    margin-top: 1.1rem;
+    margin-bottom: 0;
+    font-weight: $weight-book;
+    text-align: left;
+  }
+  
+  .reading.rdo-author + .reading.rdo-author {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  // body text following author block needs to have margin-top set
+  .reading.rdo-author + .body {
+    margin-top: 2rem;
+  }
+  
+  .rd-em,
+  section.reading-conclusion header > h1 {
+    font-family: $font-header, $sans-serif;
+    font-size: 24pt;
+  }
+  
+  section.reading-conclusion header {
+    margin-bottom: 1rem;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.fm-tp-title`
+  .fm-tp-title {
+    font-family: $ff-ITCAvantGardeGothicPro, $sans-serif;
+    font-size: 24pt;
+    font-weight: $weight-bold;
+    text-align: center;
+    text-transform: $txt-transform;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.fm-tp-edition`
+  .fm-tp-edition {
+    font-family: $ff-ITCAvantGardeGothicPro, $sans-serif;
+    font-size: $font-size-web-min-pt;
+    font-weight: $weight-book;
+    text-align: center;
+    text-transform: $txt-transform;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.fm-tp-author`
+  .fm-tp-author {
+    font-family: $ff-ITCAvantGardeGothicPro, $sans-serif;
+    font-size: 17pt;
+    font-weight: $weight-book;
+    text-align: center;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.fm-tp-dedication`, `.fm-tp-dedication-author`
+  .fm-tp-dedication,
+  .fm-tp-dedication-author {
+    font-family: $ff-MinionPro, $sans-serif;
+    font-size: $font-size-web-min-pt;
+  }
+  .fm-tp-dedication {
+    text-align: left;
+  }
+  .fm-tp-dedication-author {
+    text-align: right;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.rh-fm-folio`
+  .rh-fm-folio {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-size: 12pt;
+    font-weight: $weight-light;
+    text-align: center;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.rh-header`
+  .rh-header {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-size: $font-size-web-min-pt;
+    font-weight: $weight-book;
+  }
+  
+  //TODO: in `.xsl` file - we don't have condition for `.em-glossary`
+  .em-glossary {
+    font-family: $ff-PTSans, $sans-serif;
+    font-size: $font-size-web-min-pt;
+    text-transform: $txt-transform;
+  }
+  
+  //TODO: can't find it where and how we should use it, do we need it?
+  .em-index-1,
+  .em-index-2 {
+    font-family: $ff-PTSans, $sans-serif;
+    font-size: $font-size-web-min-pt;
+  }
+  
+  //TODO: in `.xsl` file - condition for `EMTitle` does not apply
+  .end-matter.title.em-title {
+    font-family: $font-body, $sans-serif;
+    font-size: 27pt;
+    font-weight: $weight-book;
+  }
+  
+  //TODO: can't find it where and how we should use it, do we need it?
+  .em-index-heading {
+    font-family: $ff-ProximaNova, $sans-serif;
+    font-size: 12pt;
+    font-weight: $weight-bold;
+  }
+  

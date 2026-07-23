@@ -1,0 +1,317 @@
+// -------------------------
+// Variables
+// -------------------------
+$toc-bg-color: #fff !default;
+$toc-text-color: #000 !default;
+$toc-title-color: #222 !default;
+
+$toc-part-size: 1.1rem !default;
+$toc-text-size: 0.9rem !default;
+
+$toc-title-margin: 0 0 1.5rem 0 !default;
+
+$toc-indent: 0 !default; //0.2rem !default;
+$toc-subtitle-margin: 0.25rem 0 0 0 !default;
+
+$reading-indent: 1.5rem;
+
+#toc .reading {
+    padding-left: $reading-indent;
+}
+
+[data-id="toc"],
+div#toc {
+    .part a::before {
+        content: '';
+    }
+    
+    .chapter a::before {
+        content: '';
+    }
+    h1 {
+      margin-top: 1.2in;
+      font-size: 2rem;
+      border-bottom: solid;
+    }
+}
+
+#toc .front-matter a::after {
+  content: '' target-counter(attr(href), page, lower-roman)!important;
+}
+#toc .part a::after,
+#toc .chapter a::after,
+#toc .reading a::after,
+#toc .back-matter a::after {
+  content: '' target-counter(attr(href), page, decimal)!important;
+}
+
+#toc li.part {
+  margin-top: 2.5rem;
+  font-size: 1em !important;
+  font-family: $font-1 !important;
+
+  .toc-part-title span.toc-chapter-number-label {
+    font-size: 1rem !important;
+  }
+
+  & + li.chapter {
+    margin-top: 0.3rem;
+  }
+}
+
+// -------------------------
+// TOC Container
+// -------------------------
+[data-id="toc"],
+#toc {
+  background-color: $toc-bg-color;
+  padding: 0;
+  text-indent: 0;
+
+  // TOC Title
+  h1 {
+    margin: $toc-title-margin;
+    color: $toc-title-color;
+  }
+
+  // List Reset
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  // List Items
+  li {
+    display: block;    
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    text-indent: 0;
+    margin-left: 0;
+    margin-top: 0.5rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    // Part Items
+    &.part {
+      font-weight: bold;
+      font-size: $toc-part-size;
+      // padding-left:2rem;
+      padding-left: $toc-indent;
+      margin-top: 1rem;
+      margin-bottom: 0 !important;
+      padding-bottom: 0;
+      line-height:18px;
+      margin-left: 0;
+
+      a {
+        text-decoration: none;
+        color: $toc-text-color;
+        flex-grow: 1;
+      }
+      
+    }
+    &.back-matter {margin-left: 0;}
+
+    // Chapters & Readings
+    &.chapter,
+    &.reading {
+      padding-left: $toc-indent;
+    }
+    &.front-matter {
+      padding-left: $toc-indent;
+      text-indent: 0;
+      margin-left: 0;
+    }
+  }
+
+  li.chapter .chapter-author, 
+  .chapter-author-display {
+    margin-left: 1cm;
+    font-size: 8pt;
+  }
+
+  // Chapter Title Container
+  .toc-chapter-title-holder {
+    flex-grow: 1;
+  }
+
+  // Chapter Labels
+  .toc-chapter-title-label,
+  .toc-chapter-number-label {
+    font-size: $toc-text-size;
+    color: $toc-text-color;
+  }
+
+  .toc-chapter-title-label {
+    margin-bottom: 0.2rem;
+    float: left;  
+    margin-right: 0;  
+  }
+
+  .toc-chapter-number-label {
+    display:inline-block;
+    // margin-right: 3px;
+    // width:75px;
+  }
+
+
+  // Chapter Title
+  .toc-chapter-title {
+    display: flex;
+    // margin-left: 3px;
+    width:auto;
+
+    a {
+      text-decoration: none;
+      font-size: $toc-text-size;
+      color: $toc-text-color;    
+      flex:1;
+      max-width:75%;  
+      padding: 0;
+      text-align: left;
+      &::before {
+        width: auto;
+      }
+    }
+  }
+
+  // Chapter Subtitle
+  .chapter-subtitle {
+    display: block;    
+    font-size: $toc-text-size;
+    font-style: italic !important;
+    margin: $toc-subtitle-margin;
+    text-align: left;
+    color: $toc-text-color;
+    margin-left:.5rem;
+  }
+
+  // Page Numbers
+  li::after {
+    content: attr(data-page);
+    font-size: $toc-text-size;
+    color: $toc-text-color;
+    flex-shrink: 0;
+    margin-left: auto;
+    align-self: center;
+  }
+
+  .toc-page-number {
+    font-size: $toc-text-size;
+   border: solid 1px #000;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  
+  ul li.part.display-none,
+  #toc ul li.part.display-none {
+    display: none !important;
+  }
+  
+  // li.chapter.front-matter.prologue {
+  li.chapter {
+    .chapter-subtitle,
+    .chapter-author,
+    .chapter-author-display {
+      margin-left:85pt;
+      display: inline-block;
+    }
+    .toc-chapter-number-label {
+      min-width:85pt;
+      max-width: 85pt;
+      display:inline-block;
+      box-sizing: border-box;
+    }
+    
+  }
+  li.part {
+    .toc-chapter-number-label {
+      width: auto;
+    }
+    .toc-part-title {
+      display: flex;;
+      .toc-chapter-number-label {
+        margin-right: 5px;
+      }
+      
+    }
+  }
+  // do we need this for every front-matter type?
+  // li.front-matter.preface,
+  // li.front-matter.introduction,
+  // li.front-matter.prologue,
+  li.front-matter,
+  li.back-matter {
+    .toc-chapter-title {
+      margin-left: 0;
+      .toc-chapter-number-label {
+        margin-right: 0;
+      }
+    }
+    .toc-chapter-title,
+    .chapter-subtitle {
+      margin-left: 0;
+    }
+    .toc-chapter-number-label {
+      width:auto;
+    }
+    /* remove this if we don't want the long back-matter toc entries */
+    .toc-chapter-title a {
+      max-width: 95%;
+    }
+  }
+  // li.back-matter.appendix,
+  // li.back-matter.index,
+  li.back-matter {
+    .toc-chapter-number-label {
+      // width: 115px;
+      width: 0;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  .part-subtitle {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+}
+#toc {
+  // General print settings for the TOC
+  page-break-inside: avoid;
+  break-inside: avoid-page;
+  
+  h1 {
+    page-break-after: avoid;
+    break-after: avoid-page;
+    margin-bottom: 0.3em;
+    
+    // Ensure at least some list content stays with heading
+    + ul {
+      page-break-before: avoid;
+      break-before: avoid-page;
+      margin-top: 0;
+      
+      // Keep first few items together
+      li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        
+        &:nth-child(-n+3) { // Keep first 3 items with heading
+          page-break-before: avoid;
+        }
+      }
+      
+      // Allow breaks in longer lists after 5 items
+      li:nth-child(n+5) {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+    }
+  }
+ 
+}
+

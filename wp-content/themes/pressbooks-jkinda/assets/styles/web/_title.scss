@@ -1,0 +1,76 @@
+@import "../components/variables";
+
+.site-content {
+    section.chapter,
+    section.front-matter,
+    section.back-matter {
+        // header h1 span {
+        //     margin: 0 !important;
+        // }
+
+        /* fix upstream title number */
+        h1.entry-title {
+            span:first-child {
+                display: none;
+            }
+            // .content-type {
+            //     font-size: 60%;
+            //     color: $charcoal;
+            //     font-weight: 200;
+            //     display: inline;
+            // }
+            // .content-number {
+            //     font-size: 60%;
+            //     font-weight: 200;
+            //     color: $charcoal;
+            //     display: inline;
+            // }
+        }
+    }
+
+    section.part {
+        // header h1 span {
+        //     margin: 0 !important;
+        // }
+
+        h1.entry-title {
+            span::before {
+                content: "";
+            }
+            
+            // .content-type {
+            //     font-size: 60%;
+            //     color: $charcoal;
+            //     font-weight: 200;
+            //     display: inline;
+            // }
+            // .content-number {
+            //     font-size: 60%;
+            //     font-weight: 200;
+            //     color: $charcoal;
+            //     display: inline;
+            // }
+        }
+    }
+
+    section {
+        header h1 span {
+            margin: 0 !important;
+        }
+
+        h1.entry-title {
+            .content-type {
+                font-size: 60%;
+                color: $charcoal;
+                font-weight: 200;
+                display: inline;
+            }
+            .content-number {
+                font-size: 60%;
+                font-weight: 200;
+                color: $charcoal;
+                display: inline;
+            }
+        }
+    }
+}

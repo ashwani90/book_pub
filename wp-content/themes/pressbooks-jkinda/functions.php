@@ -1,0 +1,4 @@
+<?php
+/**
+ * @license GPL 2.0+
+ */

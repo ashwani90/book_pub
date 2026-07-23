@@ -1,0 +1,115 @@
+@import "../components/variables";
+
+div.part {
+    h2.part-number {
+        text-align: center;
+        // font-size: 2rem;
+        font-weight: 500;
+    }
+    h1.part-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-top: 0;
+    }
+    h2.part-subtitle {
+        text-align: center;
+        font-size:1.5rem;
+    }
+}
+
+div.chapter,
+div.front-matter,
+div.back-matter {
+
+    /* fix upstream title number */
+    div.chapter-title-wrap {
+
+        .content-type {
+            // font-size: 80%;
+            color: $charcoal !important;
+            font-weight: 200;
+            // display: inline;
+        }
+
+        .content-number {
+            // font-size: 80%;
+            font-weight: 200;
+            color: $charcoal !important;
+            // display: inline;
+        }
+
+        h2.chapter-title {
+            font-weight: 800;
+            font-size: 2rem;
+        }
+        h2.chapter-subtitle {
+            font-size: 1.5rem;
+        }
+
+        .chapter-number::after {
+            content: "" !important;
+        }
+    }
+
+}
+.part-title-wrap,
+.part {
+    margin-top:2in;
+
+  h3.part-number {
+    text-align: center;
+    border-bottom: solid;   
+    margin-bottom: 5pt;
+    font-size: 15pt;
+    padding-bottom: 5px;
+  }
+
+}
+ 
+div.part,
+div.chapter,
+div.front-matter,
+div.back-matter {
+    .ugc {
+        h2 + p,
+        h3 + p,
+        h4 + p,
+        h5 + p,
+        h6 + p {
+            margin-top: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+        }
+    }
+}
+$headings: h2, h3, h4, h5, h6; 
+// When a heading ($h2) comes immediately after another heading ($h1),
+// apply a top margin to the second heading to create visual separation
+div.chapter {
+.ugc {
+  @each $h1 in $headings {
+    @each $h2 in $headings {
+      #{$h1} + #{$h2} {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+}
+.dropcap {
+    text-indent: $text-indent-reset !important;
+    &::first-letter {
+        font-size: 3em;
+        font-weight: bold;
+        float: left;
+        margin-right: 0.1em;
+        line-height: 1;
+    }
+}

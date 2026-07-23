@@ -1,0 +1,67 @@
+// Variables for consistent styling
+$footer-font-family: $font-2; // "Noto Serif", serif !default;
+$footer-font-size: 9pt !default;
+$footer-text-align: center !default;
+
+// Base footer styles
+@page {
+  @bottom-left {
+    content: string(booktitle);
+    font-family: $footer-font-family; // or use a real font: "Georgia", serif;
+    font-size: $footer-font-size;     // or use: 10pt;
+    text-align: left;               // use left, right, or center directly
+  }
+}
+
+// Chapter-specific footer
+@page chapter {
+  @bottom-left {
+    content: string(booktitle);
+    font-family: $footer-font-family;
+    font-size: $footer-font-size;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: $footer-font-family;
+    font-size: $footer-font-size;
+  }
+}
+
+// Front matter (roman numerals)
+@page front-matter {
+  @bottom-center {
+    content: counter(page, lower-roman);
+    font-family: $footer-font-family;
+    font-size: $footer-font-size;
+    text-align: center; // text-align values like 'left', 'right', or 'center' are used directly
+  }
+}
+
+// Back matter
+@page back-matter {
+  @bottom-right {
+    content: counter(page);
+    font-family: $footer-font-family;
+    font-size: $footer-font-size;
+    text-align: $footer-text-align;
+  }
+}
+
+// Part divider pages
+@page part {
+  @bottom-left {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+
+//page break
+h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+h2 + *, h3 + *, h4 + * {
+  page-break-before: avoid;
+}

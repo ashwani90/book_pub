@@ -1,0 +1,5 @@
+html {
+    /*! doing this so that anything using rems scales properly */
+    font-size: if-map-get(14px, $type);
+    /*! #{$body-font-size} #{$type} */
+}

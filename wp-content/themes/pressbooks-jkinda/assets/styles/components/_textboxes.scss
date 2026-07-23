@@ -1,0 +1,376 @@
+// Variables
+$font-primary: $font-for-header-textbox;//$font-3;
+$heading-color: #000;
+$light-bg: #fefefe;
+$grey-border: #a2a2a2;
+$blue: #267192;
+$dark-grey: #231f20;
+$muted-grey: #eae8e6;
+$charcoal: #545454;
+$heading-font-size: 1.125rem;
+
+// Mixin for text styles without font-size
+@mixin heading($weight, $color: $heading-color, $transform: none, $style: normal) {
+  font-family: $font-primary;
+  font-weight: $weight !important;
+  color: $color !important;
+  text-transform: $transform;
+  font-style: $style;
+  text-align: left;
+  margin: 10px 0 10px;
+
+  // +p {
+  //   text-indent: $text-indent-reset;
+  // }
+}
+
+// Textbox styles
+.site-content, section {
+  .textbox,
+  .textbox1,
+  .textbox2,
+  .textbox3,
+  .textbox4,
+  .textbox5,
+  .textbox6 {
+    > h2,
+    > h3, 
+    > h4,
+    > h5,
+    > h6 {
+      margin-top: $margin-medium;
+    }
+  }
+
+  .textbox1 {
+    border: 1px solid;
+    padding: 10px;
+    margin-top: 1rem;
+
+    > h2 {
+      @include heading(700);
+      font-size: 1.25rem;
+    }
+  
+    > h3 {
+      @include heading(500);
+      font-size: 1.10rem;
+    }
+  
+    > h4 {
+      @include heading(400);
+      //font-size: 1rem;
+      font-size:$heading-font-size;
+    }
+  
+    > h5 {
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  
+    > h6 {
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+  
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  .textbox2 {
+    border: 2px solid;
+    padding: 10px;
+    margin-top: 1rem;
+
+    > h2 {
+      @include heading(700);
+      font-size: 1.25rem;
+    }
+  
+    > h3 {
+      @include heading(500);
+      font-size: 1.10rem;
+    }
+  
+    > h4 {
+      @include heading(400);      
+      font-size:$heading-font-size;
+    }
+  
+    > h5 {
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  
+    > h6 {
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+  
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  .textbox3 {
+    padding: 30px;
+    border: none;
+    border-top: 1px solid $dark-grey;
+    border-bottom: 1px solid $dark-grey;
+    background-color: $muted-grey;
+    max-width: 90%;
+    margin: 0 5%;
+    margin-top: 1rem;
+
+    > h2 {
+      @include heading(700);
+      font-size: 1.25rem;
+    }
+  
+    > h3 {
+      @include heading(500);
+      font-size: 1.10rem;
+    }
+  
+    > h4 {
+      @include heading(400);
+      //font-size: 1rem;
+      font-size:$heading-font-size;
+    }
+  
+    > h5 {
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  
+    > h6 {
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+  
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  .textbox4 {
+    border: 2px solid $blue;
+    border-top-width: 13px;
+    padding: 15px 20px;
+    background-color: #ebf0f6;
+    margin-top: 1rem;
+
+    > h2 { @include heading(700, $blue);
+      font-size: 1.25rem; }
+    > h3 { @include heading(500, $heading-color, none, italic);
+      font-size: 1.10rem; }
+    > h4 { @include heading(400);
+      font-size:$heading-font-size; }
+    > h5 {
+        font-weight: 400;
+        font-size: 0.9rem;
+    }
+    
+      > h6 {
+        font-weight: 400;
+        font-size: 0.8rem;
+      }
+    p {margin-top:1em;}
+  }
+
+  .textbox5 {
+    border: 2px solid $grey-border;
+    padding: 10px 20px;
+    background-color: $light-bg;
+    margin-top: 1rem;
+
+    > h2 {
+      @include heading(700);
+      border-bottom: 1px solid darken($grey-border, 10%);
+      padding-bottom: 15px;
+      font-size: 1.25rem; 
+    }
+    > h3 { @include heading(500);
+      font-size: 1.10rem; }
+    > h4 { @include heading(400);
+      //font-size: 1rem;
+      font-size:$heading-font-size;
+     }
+
+    > h5 {
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  
+    > h6 {
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+    p {margin-top:1em;}
+  }
+
+  .textbox6 {
+    border: 2px solid #949494;
+    // padding: 0 0 15px 0;
+    // padding: 0 10px 15px;
+    background-color: $light-bg;
+    margin-top: 1rem;
+
+    > h2:first-child {
+      margin-top: 0;
+    }
+    > *:not(h2) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    > h2 {
+      @include heading(700, #fff);
+      margin-bottom: 10px;
+      background: $charcoal;
+      padding: 10px 10px 10px 20px;
+      // padding: 0;
+      font-size: 1.25rem; 
+    }
+    
+    > h3 { 
+      @include heading(500);
+      margin:1rem 20px !important;
+      font-size: 1.10rem; 
+    }
+    
+    > h4 { 
+      @include heading(400);
+      margin:1rem 20px !important;
+      //font-size: 1rem;
+      font-size:$heading-font-size;
+    }
+
+    > h5 {
+      margin:1rem 20px!important;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  
+    > h6 {
+      margin:1rem 20px !important;
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+    p {margin-top:1em;}
+    blockquote {
+      margin: 1em 3em 1em 3em;
+    }
+  }
+}
+
+// Base margin adjustment for paragraphs in all textboxes
+@for $i from 1 through 6 {
+  .textbox#{$i} p {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    font-family: $font-for-textbox-body;
+  }
+}
+
+// Headings directly after a <p> inside textboxes – more top margin
+@for $i from 1 through 6 {
+  .textbox#{$i} p + h1,
+  .textbox#{$i} p + h2,
+  .textbox#{$i} p + h3,
+  .textbox#{$i} p + h4,
+  .textbox#{$i} p + h5,
+  .textbox#{$i} p + h6 {
+    margin-top: 1.6rem;
+  }
+}
+
+// Headings that appear right after textbox opens (first-child) – smaller top margin
+@for $i from 1 through 5 {
+  .textbox#{$i} > h1:first-child,
+  .textbox#{$i} > h2:first-child,
+  .textbox#{$i} > h3:first-child,
+  .textbox#{$i} > h4:first-child,
+  .textbox#{$i} > h5:first-child,
+  .textbox#{$i} > h6:first-child {
+    margin-top: 0;
+  }
+}
+
+// Legacy Educational Textboxes
+@mixin edu-textbox2($header-color: #fff, $header-background: #444, $color: #000, $background: #fff) {
+  padding: if-map-get($textbox-padding-top, $type) if-map-get($textbox-padding-right, $type) if-map-get($textbox-padding-bottom, $type) if-map-get($textbox-padding-left, $type);
+  margin: if-map-get($textbox-margin-top, $type) if-map-get($textbox-margin-right, $type) if-map-get($textbox-margin-bottom, $type) if-map-get($textbox-margin-left, $type);
+  font-family: $textbox-font-family;
+  font-size: if-map-get($textbox-font-size, $type);
+  font-style: $textbox-font-style;
+  font-weight: $textbox-font-weight;
+  word-spacing: if-map-get($textbox-word-spacing, $type);
+  letter-spacing: if-map-get($textbox-letter-spacing, $type);
+  @if $type != 'epub' {
+    line-height: if-map-get($textbox-line-height, $type);
+  }
+
+  text-align: $textbox-text-align;
+  text-indent: if-map-get($textbox-text-indent, $type);
+  border-style: $textbox-border-style;
+  border-width: if-map-get($textbox-border-width, $type);
+  border-radius: if-map-get($textbox-border-radius, $type);
+  margin-bottom: if-map-get($edu-textbox-margin-bottom, $type);
+  padding: 0;
+  border-radius: if-map-get($edu-textbox-border-radius, $type);
+  border-style: $edu-textbox-border-style;
+  border-width: if-map-get($edu-textbox-border-width, $type);
+  color: $color;
+  background: $background;
+  h3 {
+    background: $header-background;
+    border-top-left-radius: $edu-textbox-border-radius;
+    border-top-right-radius: $edu-textbox-border-radius;
+    color: $header-color;
+    font-size: $edu-header-font-size;
+    font-style: $edu-header-font-style;
+    font-weight: $edu-header-font-weight;
+    margin: 0;
+    padding:
+      $edu-textbox-padding-top
+      $edu-textbox-padding-right
+      $edu-textbox-padding-bottom
+      $edu-textbox-padding-left;
+    text-align: $edu-header-text-align;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: $header-color;
+    }
+
+    p {
+      text-indent: 0;
+    }
+  }
+
+  .ck-textbox-content {
+    margin: 0;
+    padding:
+      $edu-textbox-padding-top
+      $edu-textbox-padding-right
+      $edu-textbox-padding-bottom
+      $edu-textbox-padding-left;
+  }
+}
+
+.ck-textbox--learning-objectives {
+  @include edu-textbox2($learning-objectives-header-color, $learning-objectives-header-background, $learning-objectives-color, $learning-objectives-background);
+}
+
+.ck-textbox--key-takeaways {
+  @include edu-textbox2($key-takeaways-header-color, $key-takeaways-header-background, $key-takeaways-color, $key-takeaways-background);
+}
+
+.ck-textbox--exercises {
+  @include edu-textbox2($exercises-header-color, $exercises-header-background, $exercises-color, $exercises-background);
+}
+
+.ck-textbox--examples {
+  @include edu-textbox2($examples-header-color, $examples-header-background, $examples-color, $examples-background);
+}

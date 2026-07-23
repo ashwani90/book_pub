@@ -1,0 +1,53 @@
+@import '../components/variables';
+div.chapter,
+div.part {
+    .ugc {
+        .quote-epigraph {
+            font-size:9pt;
+        }
+        p.bd-flush {
+            text-indent: $text-indent-reset;
+        }
+    }
+    h2.chapter-author-display {
+        font-size: 10pt;
+        font-style: italic;
+        text-align: center;
+    }
+
+}
+.footnotes {
+    margin-top:2rem;
+}
+
+.chapter .ugc .footnote,
+.front-matter .ugc .footnote,
+.back-matter .ugc .footnote,
+.part .ugc .footnote {
+    text-indent: 0;
+  }
+//Twoc olumn
+.twocolumn {
+    ul, ol {
+        margin-top: 0;        
+    }
+}
+div.table {
+    page-break-before: avoid !important; /* Force start on current page */
+    page-break-inside: auto; /* Allow breaking inside if too long */
+}
+
+/* Prevent rows from splitting mid-content */
+div.table table tr {
+    page-break-inside: avoid;
+}
+
+/* Optional: Keep headers on each page */
+div.table table thead {
+    display: table-header-group;
+}
+
+.short-paragraph {
+  page-break-inside: avoid;
+  break-inside:avoid;
+}

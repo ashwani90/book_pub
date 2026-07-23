@@ -1,0 +1,90 @@
+@import "variables";
+
+div.chapter .ugc,
+div.part .ugc,
+div.front-matter .ugc,
+div.back-matter .ugc,
+.site-content, 
+section {
+
+    blockquote {
+        margin: 1em 3em 1em 3em;
+    }
+    blockquote p {
+        text-indent: $text-indent-reset;
+    }
+
+    blockquote p:first-child {
+        margin-top: 0;
+    }
+
+    .dropcap {
+        text-indent: $text-indent-reset !important;
+        &::first-letter {
+            font-size: 3em;
+            font-weight: bold;
+            float: left;
+            margin-right: 0.1em;
+            line-height: 1;
+        }
+    }
+
+    .bibliography {
+        font-size: (
+            epub: smaller,
+            prince: 8pt,
+            web: smaller
+        );
+        font-size:smaller;
+        line-height: 1.05;
+        padding-left: $text-indent-default;
+        &:first-letter {
+            margin-left: -2em;
+        }
+        text-indent: $text-indent-reset;
+    }
+
+    .keyterm {
+        font-weight: 700;
+    	color: #373d3f;
+    }
+
+    .quote-epigraph {
+        font-size: 1.125em;
+        font-style: italic;
+        color: $charcoal;
+        text-align: center;
+        margin: 2em 1em 1em 1em;
+    }
+
+    .quote-signature {
+        font-size: 0.8em;
+        font-style: italic;
+        color: $charcoal;
+        text-align: right !important;
+        margin: 0 1em 2em 1em;
+    }
+
+    @if $type == 'web' {
+        p {
+            font-size: 1.125em;
+        }
+    }
+
+    p.credit {
+        font-size: (
+            epub: smaller,
+            prince: 8pt,
+            web: smaller
+        );
+        text-align: left;
+        text-indent: $text-indent-reset;
+    }
+}
+//Twoc olumn
+
+.twocolumn {
+    ul, ol {
+        margin-top: 0;        
+    }
+}

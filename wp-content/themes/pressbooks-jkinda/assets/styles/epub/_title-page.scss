@@ -1,0 +1,118 @@
+/* Title Page Styles */
+@import '../components/variables';
+
+$sans-serif: sans-serif !default;
+$font-subtitle: 'proxima-nova';
+
+#title-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  .title-block {
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+
+    h1.title {
+      font-family: $font-header;
+      font-size: 26pt !important;
+      text-align: center;
+      margin: 0;
+      width: 100%;  
+      line-height:1.2;  
+      display:block;
+    }
+  }
+
+  h2.subtitle {
+    font-family :$font-body;
+    font-weight: 100 !important;
+    font-size: 16pt !important;
+    text-align: center;
+    margin: .5rem;
+    width: 100%;
+  }
+
+  h2.edition {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  .author-block {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  h2.pb_author_display,
+  h3.author {
+    font-weight: 100 !important;
+    font-size: 14pt !important;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  h3.affiliation {
+    font-weight: 100 !important;
+    font-size: 10pt !important;
+    text-align: center;
+    font-style: italic;
+    margin: 0.5in 0 0 0;
+    width: 100%;
+  }
+
+  h4.publisher {
+    font-size:  12pt !important;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+  }
+
+  h5.publisher-city {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12pt !important;
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+    width: 100%;
+  }
+
+  div.publisher-logo {
+    position: absolute;
+    top: 91%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3.5rem;
+    //width: auto;
+  }
+  .logo-light { display: none; }
+  .logo-dark { display: none; }
+  @media (prefers-color-scheme: light) {
+      .logo-light { display: block; }
+  }
+  @media (prefers-color-scheme: dark) {
+      .logo-dark { display: block; }
+  }
+}

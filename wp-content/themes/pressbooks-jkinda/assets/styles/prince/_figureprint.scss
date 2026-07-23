@@ -1,0 +1,420 @@
+@import '../components/variables';
+
+// =============================================
+// Image Alignment Variables
+// =============================================
+
+// Spacing
+$image-spacing-small: 10px;
+$image-spacing-medium: 15px;
+$image-spacing-large: 20px;
+$image-auto-margin: 0 auto;
+$image-space-auto-margin: 10px auto;
+
+// Layout
+$image-display-block: block;
+$image-display-fit: fit-content;
+$image-text-align-center: center;
+$image-float-right: right;
+$image-float-left: left;
+$image-clear-both: both;
+
+
+div.image {
+  margin: 0 auto;
+  break-inside: avoid; // prevent caption/image split
+    page-break-inside: avoid;
+    page-break-before: auto;
+    page-break-after: auto;
+
+    img {
+      width: 100%;
+    height: auto;
+    max-height: 94vh; // avoid pushing image to next page
+    object-fit: contain; // prevent image from overflowing
+    }
+}
+
+.image-style-align-outside,
+.image-style-side {
+  display: block;
+  clear: both;
+  page-break-inside: avoid;
+  // margin: 0 20px;
+  -prince-margin-inside: $image-spacing-medium !important;
+  // text-align: center;
+  float: outside;
+ }
+  // Default to left for single-sided printing or if verso/recto is not supported
+
+
+  figure {
+    display: block;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    break-after: avoid;
+
+    figcaption {      
+      break-inside: avoid;
+      text-align: left;
+      margin: 0.5rem 0;
+    }
+
+    // Handle table + figcaption
+    &:has(> table:first-child) {
+      display: flex;
+      flex-direction: column-reverse;
+
+      figcaption {
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+      }
+    }
+
+    // Leave figcaption after image as default
+  }
+
+  /* Case 1: When figcaption is sibling of div.table */
+  div.bc-figure.figure {
+    display: flex !important;
+    flex-direction: column;
+
+    & > div.bc-figcaption.figcaption {
+      order: 1; // Force figcaption first
+      page-break-after: avoid;
+      break-after: avoid;
+      font-weight: bold; // If headers are bold
+      font-size: 1.1em; // Slightly larger than body text
+      margin-bottom: 0;
+      // border-bottom: solid 1px #000;
+      padding-bottom:5px;
+
+      .figure-number {
+        color: gray;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .figure-title {
+        color:#000;
+      }
+    }
+    
+    & > div.table {
+      order: 2; // Table comes after
+      margin-top:0;
+      page-break-inside: auto;
+      break-inside: auto; /* for better browser compatibility */
+    }
+
+  }
+
+  /* Case 2: When figcaption is inside div.table */
+  div.table {
+    display: flex !important;
+    flex-direction: column;
+    margin-top: .5rem;
+
+    & > table {
+      order: 2; // Table comes after
+      margin-top: 0;
+      break-inside: auto;
+      page-break-before: avoid;
+      page-break-after: auto;
+
+      tr {
+        page-break-inside: avoid; /* Don’t break a single row across pages */
+         break-inside: avoid;
+      }
+    }
+    
+    & > div.bc-figcaption.figcaption {
+      order: 1; // Force figcaption first
+      font-weight: normal; // If headers are bold
+      font-size: $figcaption-font-size; // Slightly larger than body text
+      margin-bottom: 0;
+      // border-bottom: solid 1px #000;
+      padding-bottom:5px;
+      font-family: $table-caption-font-family;
+
+      .figure-number {
+        color: gray;
+        margin-right: 5px;
+        font-weight: bold;
+      }
+      .figure-title {
+        color:#000;
+      }
+    }
+  }
+ /* SPECIAL CASE: Image + Caption - RESET FLEX LAYOUT */
+ div.bc-figure.figure > p:has(> img) {
+  + div.bc-figcaption.figcaption {
+    display: block !important;
+    order: initial !important;
+    margin-top: 0.5em; /* Add spacing between image and caption */
+    font-weight: bold; // If headers are bold
+    font-size: 1em; // Slightly larger than body text
+    font-family: $figure-caption-font-family;
+  }
+}
+
+/* Fallback for browsers without :has() */
+div.bc-figure.figure > p img {
+  + div.bc-figcaption.figcaption {
+    display: block !important;
+    order: initial !important;
+    margin-top: 0.5em;
+  }
+}
+
+figure, 
+div.bc-figure.figure, 
+div.table,
+.figure,
+.bc-figure {
+    margin-top: $margin-small;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+}
+
+/* Ensure captions stay with their figures */
+figcaption, 
+.figure-caption, 
+.caption, 
+.figure-caption p {
+    page-break-after: avoid;
+    page-break-before: avoid;
+    break-after: avoid;
+    break-before: avoid;
+    display: inline-block;
+    width: 100%;
+}
+/* Additional safeguard for tables */
+table {
+  width:100%;
+  border-collapse:collapse;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    th,
+    td {
+      font-size:1rem;
+    }
+}
+.site-content section.chapter p.credit,
+.site-content section.chapter .credit {
+  font-size:smaller;
+  text-align: left;
+}
+ /* Figure image alignments */
+
+// =============================================
+// Image Alignment Styles
+// =============================================
+.ugc {
+  .image-style-align-outside {
+    text-align: $image-text-align-center;
+    display: $image-display-block;
+  }
+
+  .image-style-block-align-right {
+    float: $image-float-right;
+    clear: $image-clear-both;
+    margin-left: $image-spacing-medium;
+    margin-bottom: $image-spacing-small;
+    display: $image-display-block;
+    text-align: $image-text-align-center;
+    margin-right: 0;
+  }
+
+  .image-style-align-left {
+    float: $image-float-left;
+    margin-left:0;
+    margin-bottom: $image-spacing-small;
+    margin-right: $image-spacing-medium;
+  }
+
+  .image-style-align-right {
+    float: $image-float-right;
+    margin-left: $image-spacing-medium;
+    margin-bottom: $image-spacing-small;
+    margin-right: 0;
+  }
+
+  .image-style-block-align-left {
+    float: $image-float-left;
+    clear: $image-clear-both;
+    margin-right: $image-spacing-medium;
+    margin-bottom: $image-spacing-small;
+    display: $image-display-block;
+    width: $image-display-fit;
+    text-align: $image-text-align-center;
+    margin-left: 0;
+  }
+
+}
+div {
+  &.front-matter,
+  &.back-matter,
+  &.chapter,
+  &.part {
+    .ugc {
+      p.bibliography {
+        margin-bottom: 0;
+        font-size: 8pt;
+      }
+    }
+  }
+}
+.print {
+  .ck-textbox--examples {
+    padding: 2.5em;
+    margin: 0.9em 0;
+    font-size: 0.9em;
+    text-align: left;
+    text-indent: 0;
+    border: solid 1px #000;
+    border-radius: 0.35em;
+    color: #000;
+    background: #f3e1e3;
+
+    h3 {
+      background: #7a333a;
+      border-top-left-radius: 0.35em;
+      border-top-right-radius: 0.35em;
+      font-weight: bold;
+      margin: 0; // optional, keeps header flush with padding
+      padding: 0.5em 1em; // optional, add spacing to heading
+      color: #fff; // optional for contrast
+    }
+  }
+}
+
+// #copyright-page > div > div p:nth-last-child(1) {color:transparent;}
+
+.image-align-block-outside {
+  display: block;
+  text-align: left;
+  margin: 10px !important;
+  float: outside;
+  display: prince-image;
+  /* Ensures it's treated as a full block float */
+  clear: both;
+  /* Prevents overlap with other floats */
+}
+
+.ugc {
+  // Reset text-indent for paragraph immediately following a heading
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    + p {
+      text-indent: $text-indent-reset ;
+    }
+  }
+
+  // Apply standard indent to all paragraphs
+  p {
+    text-indent: $text-indent-default;
+
+    // Remove indent from the first paragraph in any section
+    &:first-of-type {
+      text-indent: $text-indent-reset;
+    }
+  }
+}
+
+figure,
+div.figure,
+div.image,
+div.table,
+div.fig, // Include other specific classes if needed
+.ck-content figure, 
+.webbook figure, 
+.ck-content div.figure {
+  margin-top: 1rem; // Adjust value as needed
+  break-inside: avoid;
+  page-break-inside: avoid;
+  // hack for previously generated figcaptions that have wp class
+  > .wp-caption-text {
+    font-style: normal;
+    > .figure-source {
+      font-style: italic;
+    }
+  }
+
+  +p {
+    margin-top: 0;
+  }
+}
+div.table {
+  page-break-inside: avoid;
+  break-inside: avoid; 
+  table {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+}
+.page-break + p {
+  text-indent: 0 !important;
+}
+
+ 
+
+div.image {  
+  .figcaption {
+   br {
+     display: none;
+   }
+   .figure-source {
+     display:block;
+   }    
+ }  
+}
+.front-matter,
+.back-matter,
+.chapter,
+.part {
+  p:has(span.table-source) {
+    text-indent: 0 !important;    
+
+  }
+}
+.force-break {
+  // Container properties
+  page-break-inside: auto !important;
+  break-inside: auto !important ;
+  overflow: visible;
+  display: block;
+  
+  // Ensure table can break
+  table {
+    page-break-inside: auto;
+    break-inside: auto;
+   
+    // Cell breaking
+    td, th {
+      page-break-inside: auto;
+      break-inside: auto;
+      -webkit-column-break-inside: auto;
+    }
+  }
+  // Prevent awkward breaks on single rows
+  &:not(:first-child) {
+    page-break-before: avoid ;
+  }
+}
+div.front-matter,
+  div.back-matter,
+  div.chapter,
+  div.part {
+    .ugc {
+      div.image {
+        margin: 15px auto 10px auto;
+      }
+    }
+   
+  }

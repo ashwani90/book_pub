@@ -33,7 +33,17 @@ wp-config.php
 /wp-content/plugins/ckeditor-for-wordpress/
 wp-content/plugins/enable-media-replace/
 wp-content/plugins/pressbooks-3/
-/wp-content/themes/*
+/wp-content/themes/pressbooks-aldine/
+/wp-content/themes/pressbooks-book/
+/wp-content/themes/pressbooks-clarke/
+/wp-content/themes/pressbooks-donham/
+/wp-content/themes/pressbooks-luther/
+/wp-content/themes/pressbooks-standard/
+/wp-content/themes/pressbooks-jkinda/vendor/
+/wp-content/themes/twentytwentyfour/
+/wp-content/themes/twentytwentythree/
+/wp-content/themes/twentytwentytwo/
+
 # Log files
 *.log
 epubcheck-5.1.0.zip

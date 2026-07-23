@@ -1,0 +1,463 @@
+// Define variables
+// $text-indent-default: 2em;
+// $text-indent-reset: 0em;
+
+@import "variables";
+
+/* TODO: refactor this, maybe put it somewhere else */
+div.suggestions-present::before {
+    content: "This book is a work in progress.\A\A Content below may be incomplete \A or have inconsistencies.";
+    white-space: pre-wrap;
+    font-size: 1.5em;
+    display: block;
+    text-align: center;
+    color: #000;
+    border: 2px solid #bf5d5d;
+    padding: 5px;
+    margin-bottom: 1.5em;
+}
+
+/*
+@if $type == 'web' {
+  #{$all-types} {
+    p {
+      font-size: 18px;
+    }
+  }
+}
+*/
+
+#{$all-types} {
+    // .chapter {
+        p:first-of-type {
+            text-indent: $text-indent-reset; // No indentation for the first paragraph
+        }
+        p {
+            text-indent: $text-indent-default; // Default indentation for paragraphs           
+            // margin-top: $margin-small !important;
+
+            & + p {
+                text-indent: $text-indent-default; // No indentation for the first paragraph after a heading
+    
+            }
+        }
+
+        /*
+        :is(h1, h2, h3, h4, h5, h6)+p,
+        :is(h1, h2, h3, h4, h5, h6)+figure+p,
+        :is(h1, h2, h3, h4, h5, h6)+table+p,
+        :is(h1, h2, h3, h4, h5, h6)+blockquote+p {
+            text-indent: $text-indent-reset; // No indentation for the first paragraph after a heading            
+        }
+        */
+        
+        /* Explicit Flush Style */
+        .explicit-flush {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Ensure proper spacing when figure, blockquote, and table are between header and paragraph */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            +p {
+                text-indent: $text-indent-reset;
+            }
+
+            +figure,
+            +blockquote,
+            +table {
+                margin-top: 10px; // Ensure proper spacing after the header
+            }
+
+            /* When figure, blockquote, and table appear together in any order */
+            +figure+blockquote,
+            +blockquote+figure,
+            +figure+table,
+            +table+figure,
+            +blockquote+table,
+            +table+blockquote {
+                @extend .explicit-flush; // emove extra spacing when they appear together
+            }
+
+            /* If all three appear together in any order */
+            +figure+blockquote+table,
+            +figure+table+blockquote,
+            +blockquote+figure+table,
+            +blockquote+table+figure,
+            +table+figure+blockquote,
+            +table+blockquote+figure {
+                @extend .explicit-flush;
+            }
+
+            /* Ensure first paragraph aligns correctly */
+            +figure+blockquote+table+p,
+            +figure+table+blockquote+p,
+            +blockquote+figure+table+p,
+            +blockquote+table+figure+p,
+            +table+figure+blockquote+p,
+            +table+blockquote+figure+p,
+            +figure+blockquote+p,
+            +blockquote+figure+p,
+            +figure+table+p,
+            +table+figure+p,
+            +blockquote+table+p,
+            +table+blockquote+p,
+            +figure+p,
+            +blockquote+p,
+            +table+p {
+                @extend .explicit-flush;
+            }
+        }
+
+        .bd-flush {
+            text-indent: $text-indent-reset;
+        }
+        
+    // } 
+}
+
+#{$all-types} {
+    text-align: left; // Ensure all text is left-aligned
+  
+    // Define font sizes as variables
+    $h2-size: 1.8em;
+    $h3-size: 1.6em;
+    $h4-size: 1.2em;
+    $h5-size: 1.1em;
+    $h6-size: 1.05em;  
+    h2, h3, h4, h5, h6 {
+      text-align: left;
+      margin-bottom: 0;
+      margin-top: $margin-large;
+      line-height: 1;
+    }
+  
+    h2 { font-size: $h2-size; color: #000; font-weight: 600;}
+    h3 { font-size: $h3-size; color: #000;}
+    h4 { font-size: $h4-size; color: #000; font-weight: 600;}
+    h5 { font-size: $h5-size; color: #000; font-style: normal;}
+    h6 { font-size: $h6-size; font-style: italic;}
+}
+
+.site-content,
+div.ugc {
+    .chapter, .part {
+        // No indentation for the first paragraph after headers, figures, images, blockquotes, or tables
+        // h1 + p,
+        // h2 + p,
+        // figure + p,
+        // img + p,
+        // blockquote + p,
+        // div + p,
+        // table + p {
+        //     text-indent: $text-indent-reset;
+        // }
+
+        // Default indentation for all paragraphs
+        // p {
+        //     text-indent: $text-indent-default;
+        //     margin-top: $margin-small;
+        // }
+
+        // p > blockquote {
+        //     text-indent: $text-indent-reset;
+        // }
+        
+
+        // Drop cap styling for the first paragraph
+        /*
+        p:first-of-type {
+            text-indent: $text-indent-reset;
+
+            &::first-letter {
+                font-size: $drop-cap-size;
+                font-weight: $drop-cap-weight;
+                text-indent: $text-indent-reset;
+            }
+        }*/
+
+        figure.image-style-side {
+            float: $figure-float;
+            margin: $figure-margin;
+        }
+    }
+}
+// Define variables for figure styling
+.custom-text-1 {
+    display: block;
+    max-width:550px;
+    margin: 10px 0 0 50px;
+    line-height: 1.3;
+}
+
+
+/* ✅ Default figure style: center aligned, no text wrap */
+#{$all-types} {
+  figure,
+  figure.image,
+  div.image {
+    display: block;
+    margin: 1.5em auto $margin-small auto;
+    clear: both;
+    text-align: left;
+  }
+
+  /* ✅ Aligns figure to the left with text wrapping */
+  figure.image-style-align-left,
+  div.image.image-style-align-left {
+    float: left;
+    line-height: 0.9;
+    margin-right: $margin-medium;
+    margin-bottom: $margin-small;
+
+    +p {
+      margin-top: 0;
+    }
+  }
+
+  /* ✅ Aligns figure to the right with text wrapping */
+  figure.image-style-align-right,
+  div.image.image-style-align-right {
+    float: right;
+    margin-left: $margin-medium;
+    margin-bottom: $margin-small;
+    
+    +p {
+      margin-top: 0;
+    }
+ }
+
+  /* ✅ Aligns figure to the left without text wrapping (block style) */
+  figure.image-style-block-align-left,
+  div.image.image-style-block-align-left {
+    float: left;
+    clear: both;
+    margin-right: $margin-medium;
+    margin-bottom: $margin-small;
+    margin-top: $margin-small;
+    display: block;
+    display:inline-block;
+    text-align: left;
+  }
+
+  /* ✅ Aligns figure to the right without text wrapping (block style) */
+  figure.image-style-block-align-right,
+  div.image.image-style-block-align-right {
+    float: right;
+    clear: both;
+    margin-left: $margin-medium;
+    margin-bottom: $margin-small;
+    margin-top: $margin-small;
+    display: block;
+    display:inline-block;
+    text-align: left;
+  }
+
+  /* ✅ Center align figcaption inside any figure */
+  figure figcaption,
+  div.image .figcaption,
+  div.image .figure-caption {
+    text-align: left;
+    margin-top: 5px;    
+    font-size: $figcaption-font-size;
+    line-height: 1.4;
+    font-style: normal;    
+    // hack for previously generated figcaptions that have wp class
+    &.wp-caption-text {
+      font-style: normal;
+      font-size: $figcaption-font-size;
+    }
+  }
+  .figure-number,
+  .table-number {
+    font-weight: bold;
+    color: $charcoal;
+    margin-right: 10px;
+  }
+  .figure-source,
+  .table-source {
+    // border-top: 1px solid #000;
+    font-size: $figcaption-font-size;
+    font-style: italic;
+    margin-top: 5px;  
+  }
+  figure.image-style-block-align-right + *,
+  figure.image-style-block-align-left + * {
+    clear: both;
+  }
+  figure.image-style-align-outside {
+      text-align: left;
+      display: block;
+  }
+}
+// .site-content .chapter blockquote p {
+//     text-indent: $text-indent-reset;
+// }
+.site-content .chapter .QuoteEpigraph {
+    text-align: center;
+}
+
+// Default figure styling
+#{$all-types} {
+  figure {
+    // margin: 1em 0;
+    margin: 0 auto $margin-small auto;
+    // If figure contains a TABLE → caption on TOP
+    &.table-figure {
+      display: block;
+  
+      figcaption {
+        order: -1; // Forces caption above table
+        margin-bottom: 0.5em;
+        font-weight: bold;
+        text-align: left;
+        font-style:normal;
+        margin-bottom: 0;
+        // border-bottom: solid 1px #000;
+
+        .figure-number {
+          color: gray;
+          margin-right: 5px;
+        }
+        .figure-title {
+          color:#000;
+        }
+        font-family: $table-caption-font-family;
+        // margin-bottom: 
+      }
+     
+      table {
+        margin: 0 !important; // emove top margin when caption is above
+        border-style: solid !important;
+        border:solid 1px #000;
+
+        th {
+            border:solid 1px #000;
+        }
+      }
+    }  
+  
+    // If figure contains an IMAGE → caption at BOTTOM
+    &.image-figure {
+      display: block;
+  
+      figcaption {
+        order: 1; // Forces caption below image
+        margin-top: 0.5em;
+        text-align: left;
+        // font-style: italic;
+        font-family: $figure-caption-font-family;
+      }
+    }
+  }
+}
+ul, ol {
+  list-style-position: outside; 
+}
+
+// ul, ol {
+//   list-style-position: inside; 
+// }
+
+// .site-content .footnotes ol li p {
+//   text-indent: 1em;
+// }
+
+@page {
+  @footnote {
+    // color: red;
+    // border-top: solid black thin;
+    padding-top: 18pt
+  }
+}
+
+figure {  
+  figcaption {
+   br {
+     display: none;
+   }
+   .figure-source {
+     display:block;
+   }    
+ }  
+}
+
+// 1. Import Google Font (only works if SCSS compiler allows external imports)
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+// 2. Main Code Block Styling
+.site-content {
+  p span.table-source {
+  text-indent: 0;
+  margin-top:-5px;
+  }
+  
+  pre {
+    background: #f5f5f5;
+    padding: 1em;
+    border: 1px solid #ccc;    
+    font-size: 1.125em;
+    line-height: 1.5;
+    counter-reset: line;
+    overflow-x: auto;
+    display: block;
+  
+    code {
+      display: block;
+      font-family: "Source Code Pro", monospace;
+      width: 100%;
+  
+      span {
+        display: block;
+        counter-increment: line;
+        white-space: pre;
+  
+        &::before {
+          content: counter(line);
+          display: inline-block;
+          width: 2em;
+          margin-right: 1em;
+          text-align: left;
+          color: #888;
+          user-select: none;
+        }
+  
+        // Input Line
+        &.input {
+          color: #005cc5;
+        }
+        &.input::before {
+          content: counter(line) " >";
+        }
+  
+        // Output Line
+        &.output {
+          color: #22863a;
+          font-style: italic;
+        }
+      }
+    }
+    .code-block-output {
+      background: #e6e6e6;
+      padding:10px;
+      display: block;
+      margin-top: .5em;
+      margin-left:50px;
+      span {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  p[data-type="subtitle"] + p[data-type="author-display"],
+  p.subtitle + p.author-display {
+    text-indent: 0;    
+  }
+}

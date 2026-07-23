@@ -1,0 +1,172 @@
+// Variables
+$font-primary: $font-for-header-textbox;//$font-3;
+$heading-color: #000;
+$light-bg: #fefefe;
+$grey-border: #a2a2a2;
+$blue: #267192;
+$dark-grey: #231f20;
+$muted-grey: #eae8e6;
+$charcoal: #545454;
+$heading-a-font-size-pdf: 1.25rem;
+$heading-b-font-size-pdf: 1.15rem;
+$heading-c-font-size-pdf: 1rem;
+
+// Heading mixin
+@mixin heading($weight, $color: $heading-color, $transform: none, $style: normal) {
+  font-family: $font-primary;
+  font-weight: $weight !important;
+  color: $color !important;
+  text-transform: $transform;
+  font-style: $style;
+  text-align: left;
+  margin: 10px 0 10px;
+}
+
+// Textbox shared styles
+@for $i from 1 through 6 {
+  .textbox#{$i} {
+    margin-top: 1rem;
+
+    p {
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+      font-family: $font-for-textbox-body !important;
+    }
+
+    p + h1,
+    p + h2,
+    p + h3,
+    p + h4,
+    p + h5,
+    p + h6 {
+      margin-top: 1.6rem;
+    }
+
+    > h1:first-child,
+    > h2:first-child,
+    > h3:first-child,
+    > h4:first-child,
+    > h5:first-child,
+    > h6:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+// Textbox 1
+div.chapter,
+div.front-matter,
+div.back-matter,
+div.part {
+.ugc {
+  .textbox1 {
+    border: 1px solid;
+    padding: 10px;
+
+    > h2 { @include heading(700); font-size: $heading-a-font-size-pdf; /*! HELP > h2 #{$body-font-size} */}
+    > h3 { @include heading(500); font-size: $heading-b-font-size-pdf /*! HELP > h3 #{$body-font-size} */ }
+    > h4 { @include heading(400); font-size: $heading-c-font-size-pdf; font-style: italic; /*! textbox1 > h4 #{$body-font-size} */ }
+    > h5 { font-weight: 400; font-size: 1rem; }
+    > h6 { font-weight: 400; font-size: 1rem; }
+  }
+
+  // Textbox 2
+  .textbox2 {
+    border: 2px solid;
+    padding: 10px;
+
+    > h2 { @include heading(700); font-size: $heading-a-font-size-pdf; }
+    > h3 { @include heading(500); font-size: $heading-b-font-size-pdf; }
+    > h4 { @include heading(400); font-size: $heading-c-font-size-pdf; font-style: italic; }
+    > h5 { font-weight: 400; font-size: 1rem; }
+    > h6 { font-weight: 400; font-size: 1rem; }
+  }
+
+  // Textbox 3
+  .textbox3 {
+    padding: 30px;
+    border: none;
+    border-top: 1px solid $dark-grey;
+    border-bottom: 1px solid $dark-grey;
+    background-color: $muted-grey;
+    max-width: 90%;
+    margin: 1rem 5% 0;
+
+    > h2 { @include heading(700); font-size: $heading-a-font-size-pdf; }
+    > h3 { @include heading(500); font-size: $heading-b-font-size-pdf; }
+    > h4 { @include heading(400); font-size: $heading-c-font-size-pdf; font-style: italic; }
+    > h5 { font-weight: 400; font-size: 1rem; }
+    > h6 { font-weight: 400; font-size: 1rem; }
+  }
+
+  // Textbox 4
+  .textbox4 {
+    border: 2px solid $blue;
+    border-top-width: 13px;
+    padding: 15px 20px;
+    background-color: #ebf0f6;
+
+    > h2 { @include heading(700, $blue); font-size: $heading-a-font-size-pdf; }
+    > h3 { @include heading(500, $heading-color, none, italic); font-size: $heading-b-font-size-pdf; }
+    > h4 { @include heading(400); font-size: $heading-c-font-size-pdf; font-style: italic; }
+    > h5 { font-weight: 400; font-size: 1rem; }
+    > h6 { font-weight: 400; font-size: 1rem; }
+  }
+
+  // Textbox 5
+  .textbox5 {
+    border: 2px solid $grey-border;
+    padding: 10px 20px;
+    background-color: $light-bg;
+
+    > h2 {
+      @include heading(700);
+      border-bottom: 1px solid darken($grey-border, 10%);
+      padding-bottom: 15px;
+      font-size: $heading-a-font-size-pdf;
+    }
+    > h3 { @include heading(500); font-size: $heading-b-font-size-pdf; }
+    > h4 { @include heading(400); font-size:$heading-c-font-size-pdf; font-style: italic;}
+    > h5 { font-weight: 400; font-size: 1rem; }
+    > h6 { font-weight: 400; font-size: 1rem; }
+  }
+
+  // Textbox 6
+  .textbox6 {
+    border: 2px solid #949494;
+    padding: 0 0 15px 0;
+    background-color: $light-bg;
+
+    > h2 {
+      @include heading(700, #fff);
+      background: $charcoal;
+      padding: 10px 10px 10px 20px;
+      margin-bottom: 10px;
+      font-size: $heading-a-font-size-pdf;
+    }
+    > h3 { @include heading(500); margin-top: 1rem !important; font-size: $heading-b-font-size-pdf; }
+    > h4 { @include heading(400); margin-top: 1rem !important; font-size:$heading-c-font-size-pdf; font-style: italic; }
+    > h5 { font-weight: 400; margin-top: 1rem !important; font-size: 1rem; }
+    > h6 { font-weight: 400; margin-top: 1rem !important; font-size: 1rem; }
+  }
+}
+}
+div.chapter {
+  .ugc {
+    h2, h3, h4, h5, h6 {
+      text-indent: 0;
+    }
+  }
+}
+div.chapter {
+  .ugc {
+    .textbox {
+      padding: 10px 20px;
+      > h2 {  font-size: $heading-a-font-size-pdf; }
+      > h3 {  font-size: $heading-b-font-size-pdf; }
+      > h4 {  font-size: $heading-c-font-size-pdf; font-style: italic; }
+      > h5 { font-weight: 400; font-size: 1rem; }
+      > h6 { font-weight: 400; font-size: 1rem; }
+    }
+  }
+}
